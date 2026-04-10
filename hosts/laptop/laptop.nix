@@ -3,10 +3,11 @@
 {
     imports = [
         ./hardware-configuration.nix
-        ../modules/boot.nix
-        ../modules/base.nix
-        ../modules/packages.nix
-        ../modules/amd.nix
+        ./flatpak.nix
+        ../../modules/boot.nix
+        ../../modules/base.nix
+        ../../modules/packages.nix
+        ../../modules/amd.nix
     ];
 
     networking.hostName = "nixcosh-laptop";

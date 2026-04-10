@@ -14,20 +14,18 @@
             desktop = nixpkgs.lib.nixosSystem {
                 inherit system;
                 modules = [
-                    ./hosts/desktop.nix
+                    ./hosts/desktop/desktop.nix
 
                     nix-flatpak.nixosModules.nix-flatpak
-                    ./modules/flatpak-desktop.nix
                 ];
             };
 
             laptop = nixpkgs.lib.nixosSystem {
                 inherit system;
                 modules = [
-                    ./hosts/laptop.nix
+                    ./hosts/laptop/laptop.nix
 
                     nix-flatpak.nixosModules.nix-flatpak
-                    ./modules/flatpak-laptop.nix
                 ];
             };
         };
