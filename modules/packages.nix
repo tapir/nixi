@@ -54,6 +54,7 @@
             google-chrome
             firefox
             steam
+            git
         ];
     };
 }
