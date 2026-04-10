@@ -11,7 +11,7 @@
 
     networking.hostName = "nixcosh-laptop";
 
-    environment.systemPackages = with pkgs; [ ];
+    #environment.systemPackages = with pkgs; [ ];
 
     services.flatpak = {
         enable = true;
