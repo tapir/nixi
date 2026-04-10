@@ -15,7 +15,6 @@
     services = {
         displayManager.gdm.enable = true;
         desktopManager.gnome.enable = true;
-        flatpak.enable = true;
         xserver = {
             enable = true;
             excludePackages = with pkgs; [ xterm ];
@@ -48,7 +47,6 @@
         ];
         systemPackages = with pkgs; [
             distrobox
-            bazaar
             vscode
             zed-editor
             scx.full
