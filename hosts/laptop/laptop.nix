@@ -16,6 +16,7 @@
     services.flatpak = {
         enable = true;
         packages = [
+            "io.github.kolunmi.Bazaar"
             "com.github.tchx84.Flatseal"
             "com.mattjakeman.ExtensionManager"
             "com.ranfdev.DistroShelf"
