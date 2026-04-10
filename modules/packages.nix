@@ -53,7 +53,6 @@
             ptyxis
             google-chrome
             firefox
-            steam
             git
         ];
     };

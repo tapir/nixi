@@ -12,5 +12,9 @@
 
     networking.hostName = "nixcosh-desktop";
 
+    environment.systemPackages = with pkgs; [
+        steam
+    ];
+
     system.stateVersion = "26.05";
 }
