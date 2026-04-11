@@ -16,10 +16,10 @@
         # Boot animation
         plymouth = {
             enable = true;
-            theme = "colorful_sliced";
+            theme = "sliced";
             themePackages = with pkgs; [
                 (adi1090x-plymouth-themes.override {
-                    selected_themes = [ "colorful_sliced" ];
+                    selected_themes = [ "sliced" ];
                 })
             ];
         };
