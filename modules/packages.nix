@@ -29,10 +29,6 @@
             pulse.enable = true;
             jack.enable = true;
         };
-        scx = {
-            enable = true;
-            scheduler = "scx_bpfland";
-        };
     };
 
     environment = {

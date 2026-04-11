@@ -15,6 +15,15 @@
         steam
     ];
 
+    services.scx = {
+        enable = true;
+        scheduler = "scx_bpfland";
+        extraArgs = [
+            "-m performance"
+            "-w"
+        ];
+    };
+
     services.flatpak = {
         enable = true;
         packages = [

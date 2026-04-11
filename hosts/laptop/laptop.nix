@@ -13,6 +13,17 @@
 
     #environment.systemPackages = with pkgs; [ ];
 
+    services.scx = {
+        enable = true;
+        scheduler = "scx_bpfland";
+        extraArgs = [
+            "-s 20000"
+            "-m powersave"
+            "-I 100"
+            "-t 100"
+        ];
+    };
+
     services.flatpak = {
         enable = true;
         packages = [
