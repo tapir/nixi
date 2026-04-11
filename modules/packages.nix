@@ -50,6 +50,7 @@
             google-chrome
             firefox
             git
+            adw-gtk3
         ];
     };
 }

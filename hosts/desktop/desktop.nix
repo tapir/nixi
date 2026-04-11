@@ -47,6 +47,8 @@
             "org.onlyoffice.desktopeditors"
             "org.telegram.desktop"
             "page.tesk.Refine"
+            "org.gtk.Gtk3theme.adw-gtk3"
+            "org.gtk.Gtk3theme.adw-gtk3-dark"
         ];
     };
 
