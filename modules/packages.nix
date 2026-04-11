@@ -50,6 +50,7 @@
             firefox
             git
             adw-gtk3
+            resources
         ];
     };
 }

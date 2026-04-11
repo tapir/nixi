@@ -35,7 +35,6 @@
             "com.ranfdev.DistroShelf"
             "io.dbeaver.DBeaverCommunity"
             "io.github.celluloid_player.Celluloid"
-            "net.nokyan.Resources"
             "org.gimp.GIMP"
             "org.gnome.Calculator"
             "org.gnome.Firmware"
