@@ -44,7 +44,6 @@
         systemPackages = with pkgs; [
             distrobox
             vscode
-            zed-editor
             scx.full
             ptyxis
             google-chrome
