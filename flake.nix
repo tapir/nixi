@@ -10,7 +10,7 @@
         };
     };
 
-    outputs = { self, nixpkgs, nix-flatpak, ... }:
+    outputs = { self, nixpkgs, nix-flatpak, home-manager, ... }:
     let
         system = "x86_64-linux";
     in {
