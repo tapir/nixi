@@ -1,9 +1,9 @@
-{ config, ... }: {
-    home.username = "cosku";
-    home.homeDirectory = "/home/${config.home.username}";
-    home.stateVersion = config.system.stateVersion;
+{ config, nixosConfig, ... }: {
+  home.username = "cosku";
+  home.homeDirectory = "/home/${config.home.username}";
+  home.stateVersion = nixosConfig.system.stateVersion;
 
-    imports = [
-        ../../modules/home/fonts.nix
-    ];
+  imports = [
+    ../../modules/home/fonts.nix
+  ];
 }
