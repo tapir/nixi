@@ -50,6 +50,8 @@
             git
             adw-gtk3
             resources
+            iosevka
+            nerd-fonts.iosevka
         ];
     };
 }
