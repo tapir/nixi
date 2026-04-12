@@ -1,16 +1,6 @@
 { pkgs, ... }:
 
 {
-  environment.sessionVariables = {
-    SHELL = "${pkgs.bash}/bin/bash";
-    WLR_NO_HARDWARE_CURSORS = "1";
-  };
-
-  virtualisation = {
-    docker.enable = true;
-    docker.daemon.settings.features.cdi = true;
-  };
-
   services = {
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
@@ -63,10 +53,11 @@
       gnome-system-monitor
     ];
     systemPackages = with pkgs; [
+      podman-compose
       distrobox
       vscode
       scx.full
-      gnome-console
+      ptyxis
       google-chrome
       firefox
       git

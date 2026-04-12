@@ -51,8 +51,28 @@
       "networkmanager"
       "wheel"
       "docker"
+      "podman"
     ];
   };
+
+  environment.sessionVariables = {
+    SHELL = "${pkgs.bash}/bin/bash";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
+
+  # Docker and podman setup
+  virtualisation = {
+    docker.enable = true;
+    docker.daemon.settings.features.cdi = true;
+
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = false;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+  systemd.user.sockets.podman.wantedBy = [ "sockets.target" ];
 
   # Audio
   security.rtkit.enable = true;
