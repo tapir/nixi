@@ -9,7 +9,6 @@
     virtualisation = {
         docker.enable = true;
         docker.daemon.settings.features.cdi = true;
-        podman.enable = true;
     };
 
     services = {
@@ -45,7 +44,7 @@
             distrobox
             vscode
             scx.full
-            ptyxis
+            gnome-console
             google-chrome
             firefox
             git
