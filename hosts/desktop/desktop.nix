@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, home-manager, ... }:
 
 {
     imports = [
@@ -14,6 +14,8 @@
     environment.systemPackages = with pkgs; [
         steam
     ];
+
+    home-manager.users.cosku = import ./home.nix;
 
     services.scx = {
         enable = true;

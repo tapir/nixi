@@ -1,4 +1,4 @@
-{ ... }:
+{ home-manager, ... }:
 
 {
     imports = [
@@ -12,6 +12,8 @@
     networking.hostName = "nixcosh-laptop";
 
     #environment.systemPackages = with pkgs; [ ];
+
+    home-manager.users.cosku = import ./home.nix;
 
     services.scx = {
         enable = true;
