@@ -7,6 +7,7 @@
     ../../modules/base.nix
     ../../modules/packages.nix
     ../../modules/nvidia.nix
+    ../../modules/kernel-xanmod.nix
   ];
 
   networking.hostName = "nixcosh-desktop";

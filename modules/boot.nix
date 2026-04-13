@@ -10,9 +10,6 @@
       efi.canTouchEfiVariables = true;
     };
 
-    # More performance oriented kernel with schedext enabled.
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
-
     # Boot animation
     plymouth = {
       enable = true;
