@@ -14,6 +14,7 @@
 
   #environment.systemPackages = with pkgs; [ ];
 
+  powerManagement.enable = true;
   services.logind.settings.Login = {
     SleepOperation = "suspend";
     HandlePowerKey = "suspend";
@@ -34,7 +35,11 @@
     RebootKeyIgnoreInhibited = "yes";
   };
 
-  powerManagement.enable = true;
+  services.upower {
+    enable = true;
+    ignoreLid = true;
+    criticalPowerAction = "Suspend";
+  };
 
   home-manager.users.cosku = import ./home.nix;
 
