@@ -38,6 +38,7 @@
   services.upower = {
     enable = true;
     ignoreLid = true;
+    allowRiskyCriticalPowerAction = true;
     criticalPowerAction = "Suspend";
   };
 
