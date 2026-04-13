@@ -30,7 +30,7 @@
   services.flatpak = {
     packages = [
       "com.discordapp.Discord"
-      "com.orcaslicer.OrcaSlicer"
+      "com.bambulab.BambuStudio"
     ];
   };
 
