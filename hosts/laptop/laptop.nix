@@ -35,7 +35,7 @@
     RebootKeyIgnoreInhibited = "yes";
   };
 
-  services.upower {
+  services.upower = {
     enable = true;
     ignoreLid = true;
     criticalPowerAction = "Suspend";
