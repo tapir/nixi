@@ -14,6 +14,28 @@
 
   #environment.systemPackages = with pkgs; [ ];
 
+  services.logind.settings.Login = {
+    SleepOperation = "suspend";
+    HandlePowerKey = "suspend";
+    HandlePowerKeyLongPress = "ignore";
+    HandleRebootKey = "suspend";
+    HandleRebootKeyLongPress = "ignore";
+    HandleSuspendKey = "suspend";
+    HandleSuspendKeyLongPress = "ignore";
+    HandleHibernateKey = "suspend";
+    HandleHibernateKeyLongPress = "ignore";
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "suspend";
+    HandleLidSwitchDocked = "suspend";
+    PowerKeyIgnoreInhibited = "yes";
+    SuspendKeyIgnoreInhibited = "yes";
+    HibernateKeyIgnoreInhibited = "yes";
+    LidSwitchIgnoreInhibited = "yes";
+    RebootKeyIgnoreInhibited = "yes";
+  };
+
+  powerManagement.enable = true;
+
   home-manager.users.cosku = import ./home.nix;
 
   # services.scx = {
