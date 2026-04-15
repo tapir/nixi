@@ -66,6 +66,7 @@
       iosevka
       nixfmt
       usbutils
+      ethtool
     ];
   };
 
