@@ -8,6 +8,7 @@
     ../../modules/packages.nix
     ../../modules/amd.nix
     ../../modules/kernel-std.nix
+    ../../modules/ugreen-dock.nix
   ];
 
   networking.hostName = "nixcosh-laptop";
