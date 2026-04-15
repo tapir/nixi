@@ -65,6 +65,7 @@
       resources
       iosevka
       nixfmt
+      usbutils
     ];
   };
 

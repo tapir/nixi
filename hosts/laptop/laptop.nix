@@ -14,10 +14,10 @@
 
   #environment.systemPackages = with pkgs; [ ];
 
-  boot.blacklistedKernelModules = [ "cdc_ether" ];
-  boot.kernelModules = [ "r8152" ];
+  # boot.blacklistedKernelModules = [ "cdc_ether" ];
+  # boot.kernelModules = [ "r8152" ];
 
-  powerManagement.enable = true;
+  # powerManagement.enable = true;
   services.logind.settings.Login = {
     SleepOperation = "suspend";
     HandlePowerKey = "suspend";
