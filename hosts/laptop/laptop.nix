@@ -14,6 +14,9 @@
 
   #environment.systemPackages = with pkgs; [ ];
 
+  boot.blacklistedKernelModules = [ "cdc_ether" ];
+  boot.kernelModules = [ "r8152" ];
+
   powerManagement.enable = true;
   services.logind.settings.Login = {
     SleepOperation = "suspend";
