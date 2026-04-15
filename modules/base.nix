@@ -59,6 +59,7 @@
     SHELL = "${pkgs.bash}/bin/bash";
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
+    DISTROBOX_CONTAINER_MANAGER = "docker";
   };
 
   # Docker and podman setup
