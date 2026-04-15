@@ -33,5 +33,12 @@
       "udev.log_level=3"
       "systemd.show_status=auto"
     ];
+
+    kernelModules = [ "tcp_bbr" ];
+
+    kernel.sysctl = {
+      "net.core.default_qdisc" = "fq";
+      "net.ipv4.tcp_congestion_control" = "bbr";
+    };
   };
 }

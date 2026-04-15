@@ -9,7 +9,10 @@
   # Apply ethtool tuning when the device appears
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="6c:1f:f7:75:07:ae", \
-      RUN+="${pkgs.ethtool}/bin/ethtool --set-eee usbeth0 eee off", \
-      RUN+="${pkgs.ethtool}/bin/ethtool -K usbeth0 tso off gso off gro off"
+      RUN+="${pkgs.ethtool}/bin/ethtool --set-eee usbeth0 eee off"
+
+    # Disable autosuspend on the RTL8153 ethernet itself
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="8153", \
+      ATTR{power/control}="on", ATTR{power/autosuspend}="-1"
   '';
 }
