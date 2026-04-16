@@ -3,14 +3,19 @@
 {
   services = {
     displayManager.gdm.enable = true;
+
     desktopManager.gnome.enable = true;
+
     xserver = {
       enable = true;
       excludePackages = with pkgs; [ xterm ];
       xkb.layout = "tr";
     };
+
     fwupd.enable = true;
+
     pulseaudio.enable = false;
+
     pipewire = {
       enable = true;
       alsa.enable = true;

@@ -3,18 +3,20 @@
 {
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
 
-  hardware.nvidia = {
-    open = true;
-    modesetting.enable = true;
-    powerManagement.enable = true;
-  };
+    nvidia = {
+      open = true;
+      modesetting.enable = true;
+      powerManagement.enable = true;
+    };
 
-  hardware.nvidia-container-toolkit.enable = true;
+    nvidia-container-toolkit.enable = true;
+  };
 
   boot.initrd.kernelModules = [
     "nvidia"
