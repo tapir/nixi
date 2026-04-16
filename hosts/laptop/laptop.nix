@@ -13,7 +13,7 @@
 
   boot.kernelParams = [
     "amd_iommu=off"
-    "pcie_aspm=off"
+    # "pcie_aspm=off"
   ];
 
   networking.hostName = "nixcosh-laptop";
