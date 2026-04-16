@@ -67,6 +67,7 @@
       nixfmt
       usbutils
       ethtool
+      acpica-tools
     ];
   };
 
