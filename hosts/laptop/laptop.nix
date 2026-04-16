@@ -11,14 +11,16 @@
     ../../modules/ugreen-dock.nix
   ];
 
+  boot.kernelParams = [
+    "amd_iommu=off"
+    "pcie_aspm=off"
+  ];
+
   networking.hostName = "nixcosh-laptop";
-
-  #environment.systemPackages = with pkgs; [ ];
-
   boot.blacklistedKernelModules = [ "cdc_ether" ];
   boot.kernelModules = [ "r8152" ];
 
-  # powerManagement.enable = true;
+  powerManagement.enable = true;
   services.logind.settings.Login = {
     SleepOperation = "suspend";
     HandlePowerKey = "suspend";
@@ -47,17 +49,6 @@
   };
 
   home-manager.users.cosku = import ./home.nix;
-
-  # services.scx = {
-  #   enable = true;
-  #   scheduler = "scx_bpfland";
-  #   extraArgs = [
-  #     "-s 20000"
-  #     "-m powersave"
-  #     "-I 100"
-  #     "-t 100"
-  #   ];
-  # };
 
   services.flatpak = {
     packages = [
