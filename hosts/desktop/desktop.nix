@@ -10,13 +10,11 @@
     ../../modules/kernel-xanmod.nix
   ];
 
-  networking.hostName = "nixcosh-desktop";
-
-  environment.systemPackages = with pkgs; [
-    steam
-  ];
+  system.stateVersion = "26.05";
 
   home-manager.users.cosku = import ./home.nix;
+
+  networking.hostName = "nixcosh-desktop";
 
   services.scx = {
     enable = true;
@@ -34,5 +32,7 @@
     ];
   };
 
-  system.stateVersion = "26.05";
+  environment.systemPackages = with pkgs; [
+    steam
+  ];
 }

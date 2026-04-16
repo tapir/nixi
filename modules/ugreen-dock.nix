@@ -11,4 +11,13 @@
     ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="6c:1f:f7:75:07:ae", \
       RUN+="${pkgs.ethtool}/bin/ethtool --set-eee usbeth0 eee off"
   '';
+
+  # cdc_ether module is buggy
+  boot = {
+    blacklistedKernelModules = [ "cdc_ether" ];
+    kernelModules = [ "r8152" ];
+  };
+
+  # Need this to set the realtek chip config
+  environment.systemPackages = [ pkgs.ethtool ];
 }

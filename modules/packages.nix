@@ -65,10 +65,10 @@
       resources
       iosevka
       nixfmt
-      usbutils
-      pciutils
-      ethtool
-      acpica-tools
+      # usbutils
+      # pciutils
+      # ethtool
+      # acpica-tools
     ];
   };
 

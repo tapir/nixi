@@ -11,16 +11,18 @@
     ../../modules/ugreen-dock.nix
   ];
 
-  boot.kernelParams = [
-    "amd_iommu=off"
-    # "pcie_aspm=off"
-  ];
+  system.stateVersion = "26.05";
+
+  home-manager.users.cosku = import ./home.nix;
 
   networking.hostName = "nixcosh-laptop";
-  boot.blacklistedKernelModules = [ "cdc_ether" ];
-  boot.kernelModules = [ "r8152" ];
 
   powerManagement.enable = true;
+
+  boot.kernelParams = [
+    "amd_iommu=off"
+  ];
+
   services.logind.settings.Login = {
     SleepOperation = "suspend";
     HandlePowerKey = "suspend";
@@ -48,13 +50,9 @@
     criticalPowerAction = "Suspend";
   };
 
-  home-manager.users.cosku = import ./home.nix;
-
   services.flatpak = {
     packages = [
       "com.slack.Slack"
     ];
   };
-
-  system.stateVersion = "26.05";
 }
