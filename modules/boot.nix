@@ -21,18 +21,18 @@
     #   ];
     # };
 
-    # # Silence boot messages
-    # consoleLogLevel = 3;
+    # Silence boot messages
+    consoleLogLevel = 3;
 
-    # initrd = {
-    #   verbose = false;
-    # };
+    initrd = {
+      verbose = false;
+    };
 
-    # kernelParams = [
-    #   "quiet"
-    #   "udev.log_level=3"
-    #   "systemd.show_status=auto"
-    # ];
+    kernelParams = [
+      "quiet"
+      "udev.log_level=3"
+      "systemd.show_status=auto"
+    ];
 
     kernelModules = [ "tcp_bbr" ];
 
