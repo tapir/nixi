@@ -32,13 +32,12 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    steam
-  ];
-
-  programs.steam.extraCompatPackages = with pkgs; [
-    proton-ge-bin
-  ];
+  programs.steam = {
+    enable = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+  };
 
   boot.kernelModules = [ "ntsync" ];
 
