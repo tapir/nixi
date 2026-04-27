@@ -35,4 +35,14 @@
   environment.systemPackages = with pkgs; [
     steam
   ];
+
+  programs.steam.extraCompatPackages = with pkgs; [
+    proton-ge-bin
+  ];
+
+  boot.kernelModules = [ "ntsync" ];
+
+  environment.sessionVariables = {
+    PROTON_USE_NTSYNC = "1";
+  };
 }
