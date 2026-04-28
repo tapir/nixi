@@ -26,7 +26,7 @@
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./hosts/desktop/desktop.nix
+            ./hosts/desktop/system.nix
 
             nix-flatpak.nixosModules.nix-flatpak
 
@@ -38,7 +38,7 @@
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./hosts/laptop/laptop.nix
+            ./hosts/laptop/system.nix
 
             nix-flatpak.nixosModules.nix-flatpak
 
