@@ -12,11 +12,10 @@
   ];
 
   system.stateVersion = "26.05";
-
   home-manager.users.cosku = import ./home.nix;
-
   networking.hostName = "nixcosh-desktop";
 
+  # Scheduler for game performance
   services.scx = {
     enable = true;
     scheduler = "scx_bpfland";
@@ -26,6 +25,7 @@
     ];
   };
 
+  # Desktop specific flatpaks
   services.flatpak = {
     packages = [
       "com.discordapp.Discord"

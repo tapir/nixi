@@ -12,13 +12,11 @@
   ];
 
   system.stateVersion = "26.05";
-
   home-manager.users.cosku = import ./home.nix;
-
   networking.hostName = "nixcosh-laptop";
-
   powerManagement.enable = true;
 
+  # Needed to make suspend work
   boot.kernelParams = [
     "amd_iommu=off"
   ];
@@ -50,6 +48,7 @@
     criticalPowerAction = "Suspend";
   };
 
+  # Laptop specific flatpak packages
   services.flatpak = {
     packages = [
       "com.slack.Slack"
