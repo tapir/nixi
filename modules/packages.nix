@@ -48,7 +48,6 @@
       resources
       iosevka
       nixfmt
-      firefox-gnome-theme
       # usbutils
       # pciutils
       # ethtool
