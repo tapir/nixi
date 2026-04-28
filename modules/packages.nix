@@ -1,29 +1,7 @@
 { pkgs, ... }:
 
 {
-  services = {
-    displayManager.gdm.enable = true;
-
-    desktopManager.gnome.enable = true;
-
-    xserver = {
-      enable = true;
-      excludePackages = with pkgs; [ xterm ];
-      xkb.layout = "tr";
-    };
-
-    fwupd.enable = true;
-
-    pulseaudio.enable = false;
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-    };
-  };
+  services.xserver.excludePackages = with pkgs; [ xterm ];
 
   environment = {
     gnome.excludePackages = with pkgs; [
@@ -57,6 +35,7 @@
       gnome-text-editor
       gnome-system-monitor
     ];
+
     systemPackages = with pkgs; [
       podman-compose
       distrobox

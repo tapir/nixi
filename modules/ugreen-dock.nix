@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   # Rename the dongle to usbeth0 based on MAC
   systemd.network.links."10-usbeth0" = {

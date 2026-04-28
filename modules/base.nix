@@ -7,6 +7,7 @@
     "flakes"
   ];
 
+  # Locale
   time.timeZone = "Europe/Amsterdam";
   i18n = {
     defaultLocale = "en_GB.UTF-8";
@@ -22,6 +23,19 @@
       LC_TIME = "en_GB.UTF-8";
     };
   };
+
+  # Desktop stuff
+  services = {
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    xserver = {
+      enable = true;
+      xkb.layout = "tr";
+    };
+  };
+
+  # Firmware service
+  services.fwupd.enable = true;
 
   # NetworkManager
   networking.networkmanager.enable = true;
@@ -55,6 +69,7 @@
     ];
   };
 
+  # Global env vars
   environment.sessionVariables = {
     SHELL = "${pkgs.bash}/bin/bash";
     WLR_NO_HARDWARE_CURSORS = "1";
@@ -78,4 +93,15 @@
 
   # Audio
   security.rtkit.enable = true;
+  services = {
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+  };
+
 }

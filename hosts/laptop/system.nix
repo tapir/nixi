@@ -9,44 +9,12 @@
     ../../modules/amd.nix
     ../../modules/kernel-std.nix
     ../../modules/ugreen-dock.nix
+    ../../modules/suspend.nix
   ];
 
   system.stateVersion = "26.05";
   home-manager.users.cosku = import ./home.nix;
   networking.hostName = "nixcosh-laptop";
-  powerManagement.enable = true;
-
-  # Needed to make suspend work
-  boot.kernelParams = [
-    "amd_iommu=off"
-  ];
-
-  services.logind.settings.Login = {
-    SleepOperation = "suspend";
-    HandlePowerKey = "suspend";
-    HandlePowerKeyLongPress = "ignore";
-    HandleRebootKey = "suspend";
-    HandleRebootKeyLongPress = "ignore";
-    HandleSuspendKey = "suspend";
-    HandleSuspendKeyLongPress = "ignore";
-    HandleHibernateKey = "suspend";
-    HandleHibernateKeyLongPress = "ignore";
-    HandleLidSwitch = "suspend";
-    HandleLidSwitchExternalPower = "suspend";
-    HandleLidSwitchDocked = "suspend";
-    PowerKeyIgnoreInhibited = "yes";
-    SuspendKeyIgnoreInhibited = "yes";
-    HibernateKeyIgnoreInhibited = "yes";
-    LidSwitchIgnoreInhibited = "yes";
-    RebootKeyIgnoreInhibited = "yes";
-  };
-
-  services.upower = {
-    enable = true;
-    ignoreLid = true;
-    allowRiskyCriticalPowerAction = true;
-    criticalPowerAction = "Suspend";
-  };
 
   # Laptop specific flatpak packages
   services.flatpak = {
