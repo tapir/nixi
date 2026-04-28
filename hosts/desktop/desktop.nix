@@ -8,6 +8,7 @@
     ../../modules/packages.nix
     ../../modules/nvidia.nix
     ../../modules/kernel-xanmod.nix
+    ../../modules/steam.nix
   ];
 
   system.stateVersion = "26.05";
@@ -30,18 +31,5 @@
       "com.discordapp.Discord"
       "com.bambulab.BambuStudio"
     ];
-  };
-
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = with pkgs; [
-      proton-ge-bin
-    ];
-  };
-
-  boot.kernelModules = [ "ntsync" ];
-
-  environment.sessionVariables = {
-    PROTON_USE_NTSYNC = "1";
   };
 }
