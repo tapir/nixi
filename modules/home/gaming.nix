@@ -1,9 +1,7 @@
 { ... }:
 
 {
-  programs.gamemode.enable = true;
   programs.mangohud = {
-    enable = true;
     settings = {
       fps = true;
       fps_metrics = "avg,0.01";
