@@ -75,6 +75,7 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
     DISTROBOX_CONTAINER_MANAGER = "docker";
+    MOZ_ENABLE_WAYLAND = "1";
   };
 
   # Docker and podman setup
