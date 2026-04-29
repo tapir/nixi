@@ -14,5 +14,6 @@
     ../../modules/home/hd599.nix
     ../../modules/home/gnome.nix
     ../../modules/home/autostart.nix
+    ../../modules/home/mangohud.nix
   ];
 }
