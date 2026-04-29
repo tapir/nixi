@@ -1,4 +1,5 @@
 { ... }:
+
 {
   xdg.configFile."autostart/io.github.focustimerhq.FocusTimer.desktop".text = ''
     [Desktop Entry]

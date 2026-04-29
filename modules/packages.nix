@@ -48,9 +48,9 @@
       resources
       iosevka
       nixfmt
+      # xeyes
       # usbutils
       # pciutils
-      # ethtool
       # acpica-tools
     ];
   };
