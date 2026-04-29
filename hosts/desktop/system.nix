@@ -19,7 +19,7 @@
   # Desktop specific packages
   environment.systemPackages = with pkgs; [
     mangohud
-    gamemoderun
+    gamemode
   ];
 
   # Desktop specific flatpaks
