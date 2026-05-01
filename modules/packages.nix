@@ -78,6 +78,7 @@
       "org.gtk.Gtk3theme.adw-gtk3"
       "org.gtk.Gtk3theme.adw-gtk3-dark"
       "ca.desrt.dconf-editor"
+      "io.github.tobagin.karere"
     ];
 
     overrides.global = {
