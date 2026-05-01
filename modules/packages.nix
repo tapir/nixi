@@ -48,7 +48,6 @@
       resources
       iosevka
       nixfmt
-      oscar
       # xeyes
       # usbutils
       # pciutils

@@ -16,6 +16,11 @@
   home-manager.users.cosku = import ./home.nix;
   networking.hostName = "nixcosh-desktop";
 
+  # Desktop specific packages
+  environment.systemPackages = with pkgs; [
+    oscar
+  ];
+
   # Desktop specific flatpaks
   services.flatpak = {
     packages = [
