@@ -19,7 +19,10 @@
   # Desktop specific packages
   environment.systemPackages = with pkgs; [
     oscar
+    openocd
   ];
+
+  services.udev.packages = [ pkgs.openocd ];
 
   # Desktop specific flatpaks
   services.flatpak = {
