@@ -10,6 +10,7 @@
     ../../modules/kernel-xanmod.nix
     ../../modules/steam.nix
     ../../modules/scx-bpfland.nix
+    ../../modules/openocd.nix
   ];
 
   system.stateVersion = "26.05";
@@ -19,10 +20,7 @@
   # Desktop specific packages
   environment.systemPackages = with pkgs; [
     oscar
-    openocd
   ];
-
-  services.udev.packages = [ pkgs.openocd ];
 
   # Desktop specific flatpaks
   services.flatpak = {
