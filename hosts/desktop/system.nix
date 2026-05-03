@@ -12,6 +12,7 @@
     ../../modules/embedded.nix
     ../../modules/kmscon.nix
     ../../modules/containers.nix
+    ../../modules/jumper-t-lite.nix
   ];
 
   system.stateVersion = "26.05";
