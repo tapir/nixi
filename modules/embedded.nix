@@ -8,6 +8,9 @@
   services.udev.packages = [ pkgs.openocd ];
   users = {
     groups.plugdev = { };
-    users.cosku.extraGroups = [ "plugdev" ];
+    users.cosku.extraGroups = [
+      "plugdev"
+      "dialout"
+    ];
   };
 }
