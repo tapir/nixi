@@ -10,8 +10,9 @@
     ../../modules/kernel-xanmod.nix
     ../../modules/steam.nix
     ../../modules/scx-bpfland.nix
-    ../../modules/openocd.nix
+    ../../modules/embedded.nix
     ../../modules/kmscon.nix
+    ../../modules/containers.nix
   ];
 
   system.stateVersion = "26.05";

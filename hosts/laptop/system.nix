@@ -11,6 +11,7 @@
     ../../modules/ugreen-dock.nix
     ../../modules/suspend.nix
     ../../modules/kmscon.nix
+    ../../modules/containers.nix
   ];
 
   system.stateVersion = "26.05";
