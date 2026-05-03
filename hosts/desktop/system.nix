@@ -5,7 +5,6 @@
     ./hardware-configuration.nix
     ../../modules/boot.nix
     ../../modules/base.nix
-    ../../modules/packages.nix
     ../../modules/nvidia.nix
     ../../modules/kernel-xanmod.nix
     ../../modules/steam.nix

@@ -5,7 +5,6 @@
     ./hardware-configuration.nix
     ../../modules/boot.nix
     ../../modules/base.nix
-    ../../modules/packages.nix
     ../../modules/amd.nix
     ../../modules/kernel-std.nix
     ../../modules/ugreen-dock.nix
