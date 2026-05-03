@@ -10,6 +10,7 @@
     ../../modules/kernel-std.nix
     ../../modules/ugreen-dock.nix
     ../../modules/suspend.nix
+    ../../modules/kmscon.nix
   ];
 
   system.stateVersion = "26.05";
