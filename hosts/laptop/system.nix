@@ -8,7 +8,7 @@
     ../../modules/amd.nix
     ../../modules/kernel-std.nix
     ../../modules/ugreen-dock.nix
-    ../../modules/suspend.nix
+    ../../modules/zbook-g1a.nix
     ../../modules/kmscon.nix
     ../../modules/containers.nix
   ];
