@@ -2,7 +2,6 @@
 
 {
   boot = {
-    # Bootloader
     loader = {
       systemd-boot.enable = true;
       systemd-boot.consoleMode = "max";
@@ -10,18 +9,6 @@
       efi.canTouchEfiVariables = true;
     };
 
-    # # Boot animation
-    # plymouth = {
-    #   enable = true;
-    #   theme = "sliced";
-    #   themePackages = with pkgs; [
-    #     (adi1090x-plymouth-themes.override {
-    #       selected_themes = [ "sliced" ];
-    #     })
-    #   ];
-    # };
-
-    # Silence boot messages
     consoleLogLevel = 3;
 
     initrd = {
@@ -33,12 +20,5 @@
       "udev.log_level=3"
       "systemd.show_status=auto"
     ];
-
-    kernelModules = [ "tcp_bbr" ];
-
-    kernel.sysctl = {
-      "net.core.default_qdisc" = "fq";
-      "net.ipv4.tcp_congestion_control" = "bbr";
-    };
   };
 }

@@ -7,6 +7,15 @@
     "flakes"
   ];
 
+  # Global env vars
+  environment.sessionVariables = {
+    SHELL = "${pkgs.bash}/bin/bash";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+    DISTROBOX_CONTAINER_MANAGER = "docker";
+    MOZ_ENABLE_WAYLAND = "1";
+  };
+
   # Locale
   time.timeZone = "Europe/Amsterdam";
   i18n = {
@@ -24,39 +33,6 @@
     };
   };
 
-  # Desktop stuff
-  services = {
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    xserver = {
-      enable = true;
-      xkb.layout = "tr";
-    };
-  };
-
-  # Firmware service
-  services.fwupd.enable = true;
-
-  # NetworkManager
-  networking.networkmanager.enable = true;
-
-  # Unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # Turkish Q keyboard layout
-  console.keyMap = "trq";
-
-  # Remove NixOS menu items
-  documentation.nixos.enable = false;
-
-  # Optimize disk size
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
-  nix.settings.auto-optimise-store = true;
-
   # User settings
   users.users.cosku = {
     isNormalUser = true;
@@ -64,33 +40,128 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "docker"
-      "podman"
     ];
   };
 
-  # Global env vars
-  environment.sessionVariables = {
-    SHELL = "${pkgs.bash}/bin/bash";
-    WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL = "1";
-    DISTROBOX_CONTAINER_MANAGER = "docker";
-    MOZ_ENABLE_WAYLAND = "1";
-  };
-
-  # Docker and podman setup
-  virtualisation = {
-    docker.enable = true;
-    docker.daemon.settings.features.cdi = true;
-
-    containers.enable = true;
-    podman = {
+  # Desktop stuff
+  services = {
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    xserver = {
       enable = true;
-      dockerCompat = false;
-      defaultNetwork.settings.dns_enabled = true;
+      xkb.layout = "tr";
+      excludePackages = with pkgs; [ xterm ];
     };
   };
-  systemd.user.sockets.podman.wantedBy = [ "sockets.target" ];
+
+  # Global NixOS packages
+  environment = {
+    gnome.excludePackages = with pkgs; [
+      gnome-tour
+      epiphany
+      totem
+      showtime
+      geary
+      yelp
+      gnome-browser-connector
+      gnome-calendar
+      gnome-connections
+      gnome-contacts
+      gnome-characters
+      seahorse
+      gnome-maps
+      gnome-music
+      gnome-weather
+      gnome-software
+      gnome-font-viewer
+      snapshot
+      gnome-console
+      simple-scan
+      decibels
+      gnome-clocks
+      loupe
+      papers
+      gnome-logs
+      gnome-calculator
+      baobab
+      gnome-text-editor
+      gnome-system-monitor
+    ];
+
+    systemPackages = with pkgs; [
+      podman-compose
+      distrobox
+      vscode
+      scx.full
+      ptyxis
+      google-chrome
+      firefox
+      git
+      resources
+      iosevka
+      nixfmt
+      # xeyes
+      # usbutils
+      # pciutils
+      # acpica-tools
+    ];
+  };
+
+  # Global flatpaks
+  services.flatpak = {
+    enable = true;
+
+    packages = [
+      "io.github.kolunmi.Bazaar"
+      "com.github.tchx84.Flatseal"
+      "com.mattjakeman.ExtensionManager"
+      "com.ranfdev.DistroShelf"
+      "io.dbeaver.DBeaverCommunity"
+      "io.github.celluloid_player.Celluloid"
+      "org.gimp.GIMP"
+      "org.gnome.Calculator"
+      "org.gnome.Firmware"
+      "org.gnome.Logs"
+      "org.gnome.Loupe"
+      "org.gnome.Papers"
+      "org.gnome.TextEditor"
+      "org.inkscape.Inkscape"
+      "org.onlyoffice.desktopeditors"
+      "org.telegram.desktop"
+      "org.gtk.Gtk3theme.adw-gtk3"
+      "org.gtk.Gtk3theme.adw-gtk3-dark"
+      "ca.desrt.dconf-editor"
+      "io.github.tobagin.karere"
+    ];
+
+    overrides.global = {
+      Context.filesystems = [
+        "xdg-config/gtk-3.0:ro"
+        "xdg-config/gtk-4.0:ro"
+      ];
+    };
+  };
+
+  # AppImage
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
+  # NetworkManager
+  networking.networkmanager.enable = true;
+
+  # Unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # Firmware service
+  services.fwupd.enable = true;
+
+  # Turkish Q keyboard layout
+  #console.keyMap = "trq";
+
+  # Remove NixOS menu items
+  documentation.nixos.enable = false;
 
   # Audio
   security.rtkit.enable = true;
@@ -105,9 +176,11 @@
     };
   };
 
-  # AppImage
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
+  # Optimize disk size
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
+  nix.settings.auto-optimise-store = true;
 }
