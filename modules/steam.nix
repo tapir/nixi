@@ -15,8 +15,6 @@
 
   environment.sessionVariables = {
     PROTON_USE_NTSYNC = "1";
-    SDL_VIDEODRIVER = "x11";
-    SDL_VIDEO_DRIVER = "wayland";
     SDL_AUDIODRIVER = "pipewire";
     SDL_AUDIO_DRIVER = "pipewire";
   };
