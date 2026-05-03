@@ -6,7 +6,7 @@
     useXkbConfig = true;
     fonts = [
       {
-        name = "Iosevka";
+        name = "Iosevka Extended";
         package = pkgs.iosevka;
       }
     ];

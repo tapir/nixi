@@ -157,9 +157,6 @@
   # Firmware service
   services.fwupd.enable = true;
 
-  # Turkish Q keyboard layout
-  #console.keyMap = "trq";
-
   # Remove NixOS menu items
   documentation.nixos.enable = false;
 
