@@ -1,9 +1,14 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   services.kmscon = {
-    enable = false;
-    hwRender = true;
+    enable = true;
     useXkbConfig = true;
+    fonts = [
+      {
+        name = "Iosevka";
+        package = pkgs.iosevka;
+      }
+    ];
   };
 }
