@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     openocd
+    inetutils
   ];
 
   # ST-Link V2 adapter
