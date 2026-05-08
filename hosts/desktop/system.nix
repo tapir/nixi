@@ -30,6 +30,8 @@
     packages = [
       "com.discordapp.Discord"
       "com.bambulab.BambuStudio"
+      "org.blender.Blender"
+      "org.kicad.KiCad"
     ];
   };
 }
