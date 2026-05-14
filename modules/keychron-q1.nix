@@ -17,6 +17,6 @@
   };
 
   services.udev.extraRules = ''
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0810", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl" 
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0810", MODE="0666", GROUP="users" 
   '';
 }
