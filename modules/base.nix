@@ -100,6 +100,7 @@
       resources
       iosevka
       nixfmt
+      nixd
       # xeyes
       # usbutils
       # pciutils
