@@ -13,7 +13,7 @@
     ../../modules/kmscon.nix
     ../../modules/containers.nix
     ../../modules/jumper-t-lite.nix
-    ../../modules/qmkvia.nix
+    ../../modules/keychron-q1.nix
   ];
 
   system.stateVersion = "26.05";
