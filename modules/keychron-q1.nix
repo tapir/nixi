@@ -1,15 +1,7 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    qmk
-    via
-  ];
-
-  hardware.keyboard.qmk.enable = true;
-  services.udev = {
-    packages = with pkgs; [
-      via
-    ];
-  };
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", MODE="0666", GROUP="users", TAG+="uaccess", TAG+="udev-acl" 
+  '';
 }

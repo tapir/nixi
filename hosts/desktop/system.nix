@@ -23,13 +23,13 @@
   # Desktop specific packages
   environment.systemPackages = with pkgs; [
     oscar
+    bambu-studio
   ];
 
   # Desktop specific flatpaks
   services.flatpak = {
     packages = [
       "com.discordapp.Discord"
-      "com.bambulab.BambuStudio"
       "org.blender.Blender"
       "org.kicad.KiCad"
     ];
