@@ -31,6 +31,7 @@
       "com.discordapp.Discord"
       "org.blender.Blender"
       "org.kicad.KiCad"
+      "com.bambulab.BambuStudio"
     ];
   };
 }
