@@ -23,7 +23,6 @@
   # Desktop specific packages
   environment.systemPackages = with pkgs; [
     oscar
-    bambu-studio
   ];
 
   # Desktop specific flatpaks
