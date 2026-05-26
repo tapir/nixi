@@ -101,6 +101,7 @@
       iosevka
       nixfmt
       nixd
+      p7zip
       # xeyes
       # usbutils
       # pciutils
