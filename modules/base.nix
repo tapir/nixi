@@ -102,6 +102,7 @@
       nixfmt
       nixd
       p7zip
+      exfatprogs
       # xeyes
       # usbutils
       # pciutils
