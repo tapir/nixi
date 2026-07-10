@@ -104,8 +104,8 @@
       p7zip
       exfatprogs
       # xeyes
-      # usbutils
-      # pciutils
+       usbutils
+       pciutils
       # acpica-tools
     ];
   };

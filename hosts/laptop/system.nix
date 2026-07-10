@@ -17,6 +17,11 @@
   home-manager.users.cosku = import ./home.nix;
   networking.hostName = "nixcosh-laptop";
 
+  # Laptop specific nix packages
+  environment.systemPackages = with pkgs; [
+    wireguard-tools
+  ];
+
   # Laptop specific flatpak packages
   services.flatpak = {
     packages = [
