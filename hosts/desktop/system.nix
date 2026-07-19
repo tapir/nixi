@@ -12,7 +12,7 @@
     ../../modules/embedded.nix
     ../../modules/kmscon.nix
     ../../modules/containers.nix
-    ../../modules/jumper-t-lite.nix
+    #../../modules/jumper-t-lite.nix
     ../../modules/keychron-q1.nix
   ];
 
