@@ -12,5 +12,17 @@
       switch-applications = [ "<Super>Tab" ];
       switch-applications-backward = [ "<Shift><Super>Tab" ];
     };
+
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+      ];
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      name = "Disable Ctrl W";
+      command = "true";
+      binding = "<Control>w";
+    };
   };
 }
