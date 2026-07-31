@@ -103,7 +103,6 @@
       nixd
       p7zip
       exfatprogs
-      godot
       # xeyes
       usbutils
       pciutils
