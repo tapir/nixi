@@ -103,9 +103,10 @@
       nixd
       p7zip
       exfatprogs
+      godot
       # xeyes
-       usbutils
-       pciutils
+      usbutils
+      pciutils
       # acpica-tools
     ];
   };
