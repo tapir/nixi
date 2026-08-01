@@ -107,6 +107,7 @@
       usbutils
       pciutils
       # acpica-tools
+      refine
     ];
   };
 
