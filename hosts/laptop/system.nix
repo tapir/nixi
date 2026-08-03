@@ -11,6 +11,7 @@
     ../../modules/zbook-g1a.nix
     ../../modules/kmscon.nix
     ../../modules/containers.nix
+    ../../modules/claude.nix
   ];
 
   system.stateVersion = "26.05";
