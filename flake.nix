@@ -8,6 +8,9 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # 1. Added claude-desktop here
+    claude-desktop.url = "github:aaddrick/claude-desktop-debian";
   };
 
   outputs =
@@ -17,7 +20,7 @@
       nix-flatpak,
       home-manager,
       ...
-    }:
+    }@inputs: # 2. Added @inputs to capture them for specialArgs
     let
       system = "x86_64-linux";
     in
@@ -25,6 +28,8 @@
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
+          # 3. Pass inputs to desktop modules
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/desktop/system.nix
 
@@ -37,6 +42,8 @@
 
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
+          # 3. Pass inputs to laptop modules
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/laptop/system.nix
 
