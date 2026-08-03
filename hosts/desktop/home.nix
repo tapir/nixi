@@ -15,4 +15,13 @@
     ../../modules/home/gnome.nix
     ../../modules/home/mangohud.nix
   ];
+
+  programs.bash = {
+    enable = true;
+    shellAliases = {
+      update-boot = "sudo nixos-rebuild boot --flake .#desktop";
+      update-switch = "sudo nixos-rebuild switch --flake .#desktop";
+      update-nixpkg = "nix flake update && git pull && git commit -am \"nixpkg update\" && git push";
+    };
+  };
 }
