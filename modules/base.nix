@@ -145,6 +145,12 @@
     };
   };
 
+  # Enable the Nautilus extension for terminal access
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "ptyxis";
+  };
+
   # AppImage
   programs.appimage = {
     enable = true;
