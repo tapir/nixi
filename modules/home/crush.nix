@@ -17,6 +17,6 @@
     hook add PreToolUse --matcher "^bash$" --command "rtk hook claude" --name rtk
 
     model large hyper/kimi-k3 --think --reasoning-effort max
-    model small hyper/deepseek-v4-flash --think false
+    model small hyper/deepseek-v4-flash-0731 --reasoning-effort none
   '';
 }
