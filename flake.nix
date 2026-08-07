@@ -9,7 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # 1. Added claude-desktop here
     claude-desktop.url = "github:aaddrick/claude-desktop-debian";
   };
 
