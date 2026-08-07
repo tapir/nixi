@@ -18,4 +18,11 @@
     ../../modules/home/distrobox.nix
     ../../modules/home/bash.nix
   ];
+
+  programs.bash = {
+    shellAliases = {
+      update-boot = "sudo nixos-rebuild boot --flake .#desktop";
+      update-switch = "sudo nixos-rebuild switch --flake .#desktop";
+    }
+  };
 }
