@@ -21,8 +21,8 @@
 
   programs.bash = {
     shellAliases = {
-      update-boot = "sudo nixos-rebuild boot --flake .#desktop";
-      update-switch = "sudo nixos-rebuild switch --flake .#desktop";
+      nixboot = "sudo nixos-rebuild boot --flake .#desktop";
+      nixswitch = "sudo nixos-rebuild switch --flake .#desktop";
     };
   };
 }
