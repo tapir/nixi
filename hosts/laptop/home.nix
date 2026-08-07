@@ -20,7 +20,7 @@
     shellAliases = {
       update-boot = "sudo nixos-rebuild boot --flake .#laptop";
       update-switch = "sudo nixos-rebuild switch --flake .#laptop";
-      update-nixpkg = "nix flake update && git pull && git commit -m \"nixpkg update\" && git push";
+      update-nixpkg = "nix flake update && git pull && git commit -am \"nixpkg update\" && git push";
     };
   };
 }
