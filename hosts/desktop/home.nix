@@ -14,6 +14,7 @@
     ../../modules/home/hd599.nix
     ../../modules/home/gnome.nix
     ../../modules/home/mangohud.nix
+    ../../modules/home/crush.nix
   ];
 
   programs.bash = {
