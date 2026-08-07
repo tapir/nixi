@@ -119,7 +119,6 @@
       "io.github.kolunmi.Bazaar"
       "com.github.tchx84.Flatseal"
       "com.mattjakeman.ExtensionManager"
-      "com.ranfdev.DistroShelf"
       "io.dbeaver.DBeaverCommunity"
       "io.github.celluloid_player.Celluloid"
       "org.gimp.GIMP"
