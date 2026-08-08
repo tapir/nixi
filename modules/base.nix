@@ -141,6 +141,11 @@
       Context.filesystems = [
         "xdg-config/gtk-3.0:ro"
         "xdg-config/gtk-4.0:ro"
+        "/nix/store:ro"
+        "/run/current-system/sw/share/X11/fonts:ro"
+        "~/.nix-profile/share/fonts:ro"
+        "xdg-run/dconf:ro"
+        "~/.config/dconf:ro"
       ];
     };
   };
@@ -189,17 +194,4 @@
     options = "--delete-older-than 7d";
   };
   nix.settings.auto-optimise-store = true;
-
-  # temp
-  # nixpkgs.overlays = [
-  #   (final: prev: {
-  #     openblas =
-  #       if prev.stdenv.hostPlatform.system == "i686-linux" then
-  #         prev.openblas.overrideAttrs (_: {
-  #           doCheck = false;
-  #         })
-  #       else
-  #         prev.openblas;
-  #   })
-  # ];
 }
