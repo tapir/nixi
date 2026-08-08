@@ -20,9 +20,9 @@
   networking.hostName = "nixcosh-desktop";
 
   # Desktop specific packages
-  environment.systemPackages = with pkgs; [
-    oscar
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   oscar
+  # ];
 
   # Desktop specific flatpaks
   services.flatpak = {
