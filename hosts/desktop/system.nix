@@ -30,7 +30,9 @@
       "com.discordapp.Discord"
       "org.blender.Blender"
       "org.kicad.KiCad"
+      "org.godotengine.Godot"
       "com.bambulab.BambuStudio"
+      "com.orcaslicer.OrcaSlicer"
     ];
   };
 }

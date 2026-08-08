@@ -27,7 +27,6 @@
   services.flatpak = {
     packages = [
       "com.slack.Slack"
-      "com.usebruno.Bruno"
     ];
   };
 }
