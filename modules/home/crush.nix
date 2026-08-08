@@ -9,10 +9,10 @@
       --args @tugcantopaloglu/godot-mcp \
       --env GODOT_PATH /usr/sbin/godot
 
-    lsp add godot \
-      --command npx \
-      --args godot-lsp-bridge \
-      --filetypes gd
+    lsp add godot --command npx --args godot-lsp-bridge --filetypes gd
+    lsp add go --command gopls
+    lsp add clangd --command clangd
+    lsp add typescript --command typescript-language-server --args --stdio
 
     hook add PreToolUse --matcher "^bash$" --command "rtk hook claude" --name rtk
 
