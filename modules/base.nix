@@ -96,6 +96,7 @@
       ptyxis
       google-chrome
       firefox
+      ungoogled-chromium
       git
       resources
       iosevka
