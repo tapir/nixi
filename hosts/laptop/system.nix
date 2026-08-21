@@ -12,6 +12,7 @@
     ../../modules/kmscon.nix
     ../../modules/containers.nix
     ../../modules/claude.nix
+    ../../modules/openvpn.nix
   ];
 
   system.stateVersion = "26.05";
