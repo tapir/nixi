@@ -12,8 +12,6 @@
     ../../modules/embedded.nix
     ../../modules/kmscon.nix
     ../../modules/containers.nix
-    ../../modules/keychron-q1.nix
-    ../../modules/openvpn.nix
   ];
 
   system.stateVersion = "26.05";
