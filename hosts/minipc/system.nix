@@ -29,8 +29,22 @@
       "org.blender.Blender"
       "org.kicad.KiCad"
       "org.godotengine.Godot"
-      "com.bambulab.BambuStudio"
       "com.orcaslicer.OrcaSlicer"
+      "org.ardour.Ardour"
+      "org.freedesktop.LinuxAudio.Plugins.ArtyFX//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.ChowTapeModel//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.DragonflyReverb//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.peakeater//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.Airwindows//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.BYOD//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.ChowDSP-Plugins//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.InfamousPlugins//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.LSP//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.NeuralAmpModeler//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.WolfShaper//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.noise-repellent//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.x42Plugins//25.08"
+      "org.freedesktop.LinuxAudio.Plugins.Guitarix//25.08"
     ];
   };
 }
