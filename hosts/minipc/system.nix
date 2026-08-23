@@ -12,6 +12,7 @@
     ../../modules/embedded.nix
     ../../modules/kmscon.nix
     ../../modules/containers.nix
+    ../../modules/epomaker-th80v2.nix
   ];
 
   system.stateVersion = "26.05";
