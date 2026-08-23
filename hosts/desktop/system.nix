@@ -21,9 +21,9 @@
   networking.hostName = "nixcosh-desktop";
 
   # Desktop specific packages
-  # environment.systemPackages = with pkgs; [
-  #   oscar
-  # ];
+  environment.systemPackages = with pkgs; [
+    input-remapper
+  ];
 
   # Desktop specific flatpaks
   services.flatpak = {
