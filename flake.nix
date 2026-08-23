@@ -39,6 +39,20 @@
           ];
         };
 
+        minipc = nixpkgs.lib.nixosSystem {
+          inherit system;
+          # 3. Pass inputs to minipc modules
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/minipc/system.nix
+
+            nix-flatpak.nixosModules.nix-flatpak
+
+            home-manager.nixosModules.home-manager
+            ./modules/home-manager.nix
+          ];
+        };
+
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           # 3. Pass inputs to laptop modules
