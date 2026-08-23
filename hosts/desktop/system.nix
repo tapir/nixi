@@ -22,7 +22,7 @@
 
   # Desktop specific packages
   environment.systemPackages = with pkgs; [
-    input-remapper
+    inputplumber
   ];
 
   # Desktop specific flatpaks
