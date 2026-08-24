@@ -7,12 +7,12 @@
 #
 # To reset any file to the nix-managed version: delete the live file and
 # re-run home-manager switch, e.g.:
-#   rm ~/.config/pi/agent/settings.json && nixswitch
+#   rm ~/.config/pi/settings.json && nixswitch
 
 { config, pkgs, ... }:
 
 let
-  # ~/.config/pi/agent/settings.json
+  # ~/.config/pi/settings.json
   # Model/provider defaults, package manifest, subagent model tiering.
   # pi rewrites this file at runtime; the seed provides the initial state.
   settingsJson = pkgs.writeText "pi-settings.json" (
@@ -78,7 +78,7 @@ let
     }
   );
 
-  # ~/.config/pi/agent/auth.json
+  # ~/.config/pi/auth.json
   # API keys and OAuth tokens for providers.
   # Security Note: This puts the placeholder in the world-readable /nix/store.
   # Use agenix/sops-nix for real keys, or add them manually after deployment.
@@ -93,7 +93,7 @@ let
     }
   );
 
-  # ~/.config/pi/agent/AGENTS.md
+  # ~/.config/pi/AGENTS.md
   agentsMd = pkgs.writeText "pi-AGENTS.md" ''
     # Global Instructions
 
@@ -117,10 +117,10 @@ in
     # Keep a legacy symlink for any hardcoded extensions expecting ~/.pi
     run ln $VERBOSE_ARG -sfn "$HOME/.config/pi" "$HOME/.pi"
 
-    if [ ! -e "$HOME/.config/pi/agent/settings.json" ]; then
-      run cp $VERBOSE_ARG ${settingsJson} "$HOME/.config/pi/agent/settings.json"
+    if [ ! -e "$HOME/.config/pi/settings.json" ]; then
+      run cp $VERBOSE_ARG ${settingsJson} "$HOME/.config/pi/settings.json"
       # Make it writable by the user so Pi can mutate it
-      run chmod $VERBOSE_ARG 644 "$HOME/.config/pi/agent/settings.json"
+      run chmod $VERBOSE_ARG 644 "$HOME/.config/pi/settings.json"
     fi
 
     if [ ! -e "$HOME/.config/pi/web-search.json" ]; then
@@ -128,14 +128,14 @@ in
       run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/web-search.json"
     fi
 
-    if [ ! -e "$HOME/.config/pi/agent/AGENTS.md" ]; then
-      run cp $VERBOSE_ARG ${agentsMd} "$HOME/.config/pi/agent/AGENTS.md"
-      run chmod $VERBOSE_ARG 644 "$HOME/.config/pi/agent/AGENTS.md"
+    if [ ! -e "$HOME/.config/pi/AGENTS.md" ]; then
+      run cp $VERBOSE_ARG ${agentsMd} "$HOME/.config/pi/AGENTS.md"
+      run chmod $VERBOSE_ARG 644 "$HOME/.config/pi/AGENTS.md"
     fi
 
-    if [ ! -e "$HOME/.config/pi/agent/auth.json" ]; then
-      run cp $VERBOSE_ARG ${authJson} "$HOME/.config/pi/agent/auth.json"
-      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/agent/auth.json"
+    if [ ! -e "$HOME/.config/pi/auth.json" ]; then
+      run cp $VERBOSE_ARG ${authJson} "$HOME/.config/pi/auth.json"
+      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/auth.json"
     fi
   '';
 
