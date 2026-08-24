@@ -3,9 +3,9 @@
 {
   powerManagement.enable = true;
 
-  # boot.kernelParams = [
-  #   "amd_iommu=off"
-  # ];
+  boot.kernelParams = [
+    "amd_iommu=off"
+  ];
 
   services.logind.settings.Login = {
     SleepOperation = "suspend";
