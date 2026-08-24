@@ -118,6 +118,7 @@ in
   # Seed pi config files only when absent; live files belong to pi/the user.
   home.activation.piSeedConfigs = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     # Keep a legacy symlink for any hardcoded extensions expecting ~/.pi
+    run mkdir $VERBOSE_ARG -p "$HOME/.config/pi"
     run ln $VERBOSE_ARG -sfn "$HOME/.config/pi" "$HOME/.pi"
 
     if [ ! -e "$HOME/.config/pi/settings.json" ]; then
