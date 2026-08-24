@@ -7,17 +7,12 @@
 #
 # To reset any file to the nix-managed version: delete the live file and
 # re-run home-manager switch, e.g.:
-#   rm ~/.pi/agent/settings.json && nixswitch
-#
-# NOTE: webSearchConfig below contains API keys in plain text. They are
-# stored with 600 permissions, but they also live in the nix store (and in
-# this repo if it is committed). Rotate them if that's a concern, or move
-# them behind agenix/home-sops.
+#   rm ~/.config/pi/agent/settings.json && nixswitch
 
-{ ... }:
+{ config, pkgs, ... }:
 
 let
-  # ~/.pi/agent/settings.json
+  # ~/.config/pi/agent/settings.json
   # Model/provider defaults, package manifest, subagent model tiering.
   # pi rewrites this file at runtime; the seed provides the initial state.
   settingsJson = pkgs.writeText "pi-settings.json" (
@@ -28,8 +23,6 @@ let
       defaultModel = "qwen/qwen3.8-max";
       defaultThinkingLevel = "medium";
 
-      # Package manifest — pi installs missing entries automatically
-      # (also restorable explicitly with: pi update --extensions)
       packages = [
         "npm:pi-web-access"
         "npm:pi-subagents"
@@ -40,7 +33,6 @@ let
         "npm:context-mode"
       ];
 
-      # Subagent model tiering (main agent inherits defaults above)
       subagents.agentOverrides = {
         scout = {
           model = "qwen/qwen3.8-max";
@@ -66,7 +58,7 @@ let
     }
   );
 
-  # ~/.pi/web-search.json — pi-web-access providers: Exa primary, Kagi fallback
+  # ~/.config/pi/web-search.json
   webSearchJson = pkgs.writeText "pi-web-search.json" (
     builtins.toJSON {
       exaApiKey = "EXA_API_KEY";
@@ -86,7 +78,22 @@ let
     }
   );
 
-  # ~/.pi/agent/AGENTS.md — global agent instructions, loaded into every session
+  # ~/.config/pi/agent/auth.json
+  # API keys and OAuth tokens for providers.
+  # Security Note: This puts the placeholder in the world-readable /nix/store.
+  # Use agenix/sops-nix for real keys, or add them manually after deployment.
+  authJson = pkgs.writeText "pi-auth.json" (
+    builtins.toJSON {
+      openrouter = {
+        type = "api_key";
+        key = "sk-or-v1-PLACEHOLDER";
+      };
+      # Example of other providers:
+      # anthropic = { type = "api_key"; key = "sk-ant-PLACEHOLDER"; };
+    }
+  );
+
+  # ~/.config/pi/agent/AGENTS.md
   agentsMd = pkgs.writeText "pi-AGENTS.md" ''
     # Global Instructions
 
@@ -105,19 +112,43 @@ in
 {
   # Seed pi config files only when absent; live files belong to pi/the user.
   home.activation.piSeedConfigs = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    run mkdir $VERBOSE_ARG -p "$HOME/.pi/agent"
+    run mkdir $VERBOSE_ARG -p "$HOME/.config/pi/agent"
 
-    if [ ! -e "$HOME/.pi/agent/settings.json" ]; then
-      run cp $VERBOSE_ARG ${settingsJson} "$HOME/.pi/agent/settings.json"
+    # Keep a legacy symlink for any hardcoded extensions expecting ~/.pi
+    run ln $VERBOSE_ARG -sfn "$HOME/.config/pi" "$HOME/.pi"
+
+    if [ ! -e "$HOME/.config/pi/agent/settings.json" ]; then
+      run cp $VERBOSE_ARG ${settingsJson} "$HOME/.config/pi/agent/settings.json"
+      # Make it writable by the user so Pi can mutate it
+      run chmod $VERBOSE_ARG 644 "$HOME/.config/pi/agent/settings.json"
     fi
 
-    if [ ! -e "$HOME/.pi/web-search.json" ]; then
-      run cp $VERBOSE_ARG ${webSearchJson} "$HOME/.pi/web-search.json"
-      run chmod $VERBOSE_ARG 600 "$HOME/.pi/web-search.json"
+    if [ ! -e "$HOME/.config/pi/web-search.json" ]; then
+      run cp $VERBOSE_ARG ${webSearchJson} "$HOME/.config/pi/web-search.json"
+      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/web-search.json"
     fi
 
-    if [ ! -e "$HOME/.pi/agent/AGENTS.md" ]; then
-      run cp $VERBOSE_ARG ${agentsMd} "$HOME/.pi/agent/AGENTS.md"
+    if [ ! -e "$HOME/.config/pi/agent/AGENTS.md" ]; then
+      run cp $VERBOSE_ARG ${agentsMd} "$HOME/.config/pi/agent/AGENTS.md"
+      run chmod $VERBOSE_ARG 644 "$HOME/.config/pi/agent/AGENTS.md"
+    fi
+
+    if [ ! -e "$HOME/.config/pi/agent/auth.json" ]; then
+      run cp $VERBOSE_ARG ${authJson} "$HOME/.config/pi/agent/auth.json"
+      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/agent/auth.json"
     fi
   '';
+
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      export PI_CODING_AGENT_DIR="$HOME/.config/pi"
+    '';
+  };
+
+  # Also setting sessionVariables is highly recommended so it applies
+  # globally to non-bash sessions (like Wayland/X11 environments)
+  home.sessionVariables = {
+    PI_CODING_AGENT_DIR = "$HOME/.config/pi";
+  };
 }
