@@ -9,8 +9,7 @@
 
   # Apply ethtool tuning when the device appears
   services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="6c:1f:f7:75:07:ae", \
-      RUN+="${pkgs.ethtool}/bin/ethtool --set-eee usbeth0 eee off"
+    ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="6c:1f:f7:75:07:ae", RUN+="${pkgs.ethtool}/bin/ethtool --set-eee usbeth0 eee off"
   '';
 
   # cdc_ether module is buggy

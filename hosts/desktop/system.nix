@@ -20,10 +20,9 @@
   home-manager.users.cosku = import ./home.nix;
   networking.hostName = "nixcosh-desktop";
 
-  # Desktop specific packages
-  environment.systemPackages = with pkgs; [
-    inputplumber
-  ];
+  # Minipc specific packages
+  # environment.systemPackages = with pkgs; [
+  # ];
 
   # Desktop specific flatpaks
   services.flatpak = {
@@ -32,7 +31,6 @@
       "org.blender.Blender"
       "org.kicad.KiCad"
       "org.godotengine.Godot"
-      "com.bambulab.BambuStudio"
       "com.orcaslicer.OrcaSlicer"
     ];
   };

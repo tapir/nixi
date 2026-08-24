@@ -15,7 +15,6 @@
     ../../modules/home/mangohud.nix
     ../../modules/home/distrobox.nix
     ../../modules/home/bash.nix
-    #../../modules/home/pi.nix
   ];
 
   programs.bash = {

@@ -103,11 +103,12 @@
       nixd
       p7zip
       exfatprogs
-      # xeyes
       usbutils
       pciutils
-      # acpica-tools
       refine
+      gnomeExtensions.clipboard-indicator
+      gnomeExtensions.dash-to-panel
+      gnomeExtensions.appindicator
     ];
   };
 
@@ -118,7 +119,6 @@
     packages = [
       "io.github.kolunmi.Bazaar"
       "com.github.tchx84.Flatseal"
-      "com.mattjakeman.ExtensionManager"
       "io.dbeaver.DBeaverCommunity"
       "io.github.celluloid_player.Celluloid"
       "org.gimp.GIMP"
@@ -141,10 +141,10 @@
       Context.filesystems = [
         "xdg-config/gtk-3.0:ro"
         "xdg-config/gtk-4.0:ro"
+        "xdg-run/dconf:ro"
         "/nix/store:ro"
         "/run/current-system/sw/share/X11/fonts:ro"
         "~/.nix-profile/share/fonts:ro"
-        "xdg-run/dconf:ro"
         "~/.config/dconf:ro"
       ];
     };

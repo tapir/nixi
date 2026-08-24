@@ -27,9 +27,6 @@
   services.flatpak = {
     packages = [
       "com.discordapp.Discord"
-      "org.blender.Blender"
-      "org.kicad.KiCad"
-      "org.godotengine.Godot"
       "com.orcaslicer.OrcaSlicer"
       "org.ardour.Ardour"
       "org.freedesktop.LinuxAudio.Plugins.ArtyFX//25.08"
