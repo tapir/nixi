@@ -17,6 +17,7 @@
   boot.kernelModules = [ "ntsync" ];
 
   environment.sessionVariables = {
+    PROTON_ENABLE_WAYLAND = 1;
     PROTON_USE_NTSYNC = 1;
     PROTON_DXVK_LOWLATENCY = 1;
     SDL_AUDIODRIVER = "pipewire";
