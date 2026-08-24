@@ -97,6 +97,11 @@ let
   agentsMd = pkgs.writeText "pi-AGENTS.md" ''
     # Global Instructions
 
+    ## Environment
+    - The environment you see is an Arch Linux docker container where the $HOME directory is mounted to the host's $HOME directory.
+    - You can ask user to install packages inside the container.
+    - The host is NixOS and its configuration is in ~/Documents/nixi.
+
     ## Delegation (pi-subagents)
     - Before planning work in an unfamiliar codebase, delegate to `scout` for recon.
     - Before trusting external facts (docs, APIs, versions, news), delegate to `researcher` or use `web_search` for quick lookups.

@@ -41,6 +41,19 @@
     ];
   };
 
+  # Enable GNOME extensions by default
+  programs.dconf.profiles.user.databases = [
+    {
+      settings."org/gnome/shell" = {
+        enabled-extensions = [
+          "clipboard-indicator@tudmotu.com"
+          "dash-to-panel@jderose9.github.com"
+          "appindicatorsupport@rgcjonas.gmail.com"
+        ];
+      };
+    }
+  ];
+
   # Desktop stuff
   services = {
     displayManager.gdm.enable = true;
