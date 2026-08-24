@@ -112,8 +112,6 @@ in
 {
   # Seed pi config files only when absent; live files belong to pi/the user.
   home.activation.piSeedConfigs = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    run mkdir $VERBOSE_ARG -p "$HOME/.config/pi/agent"
-
     # Keep a legacy symlink for any hardcoded extensions expecting ~/.pi
     run ln $VERBOSE_ARG -sfn "$HOME/.config/pi" "$HOME/.pi"
 
