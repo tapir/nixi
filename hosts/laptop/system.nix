@@ -12,6 +12,7 @@
     ../../modules/containers.nix
     ../../modules/claude.nix
     ../../modules/openvpn.nix
+    ../../modules/zbook-g1a.nix
   ];
 
   system.stateVersion = "26.05";
