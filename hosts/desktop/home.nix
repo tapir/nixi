@@ -11,12 +11,12 @@
   imports = [
     ../../modules/home/fonts.nix
     ../../modules/home/gtk3.nix
-    ../../modules/home/hd599.nix
+    ../../modules/home/hd599
     ../../modules/home/gnome.nix
     ../../modules/home/mangohud.nix
     ../../modules/home/distrobox.nix
     ../../modules/home/bash.nix
-    ../../modules/home/pi.nix
+    ../../modules/home/pi
   ];
 
   programs.bash = {

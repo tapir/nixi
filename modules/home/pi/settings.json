@@ -1,0 +1,40 @@
+{
+  "quietStartup": true,
+  "theme": "dark",
+  "defaultProvider": "openrouter",
+  "defaultModel": "qwen/qwen3.8-max",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:pi-web-access",
+    "npm:pi-subagents",
+    "npm:pi-lens",
+    "npm:@estebanforge/pi-codegraph-enhanced",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:pi-rtk-optimizer",
+    "npm:context-mode"
+  ],
+  "subagents": {
+    "agentOverrides": {
+      "scout": {
+        "model": "qwen/qwen3.8-max",
+        "thinking": "low"
+      },
+      "researcher": {
+        "model": "qwen/qwen3.8-max",
+        "thinking": "medium"
+      },
+      "worker": {
+        "model": "moonshotai/kimi-k3",
+        "thinking": "high"
+      },
+      "reviewer": {
+        "model": "qwen/qwen3.8-max",
+        "thinking": "high"
+      },
+      "oracle": {
+        "model": "qwen/qwen3.8-max",
+        "thinking": "max"
+      }
+    }
+  }
+}
