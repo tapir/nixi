@@ -100,7 +100,6 @@
     ];
 
     systemPackages = with pkgs; [
-      podman-compose
       distrobox
       vscode
       scx.full
@@ -130,7 +129,6 @@
     packages = [
       "io.github.kolunmi.Bazaar"
       "com.github.tchx84.Flatseal"
-      "io.dbeaver.DBeaverCommunity"
       "io.github.celluloid_player.Celluloid"
       "org.gimp.GIMP"
       "org.gnome.Calculator"

@@ -28,6 +28,7 @@
   services.flatpak = {
     packages = [
       "com.slack.Slack"
+      "io.dbeaver.DBeaverCommunity"
     ];
   };
 }
