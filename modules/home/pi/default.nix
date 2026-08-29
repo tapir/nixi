@@ -24,6 +24,12 @@ let
   webSearchJson = pkgs.writeText "pi-web-search.json" (
     builtins.toJSON (builtins.fromJSON (builtins.readFile ./web-search.json))
   );
+  trustJson = pkgs.writeText "pi-trust.json" (
+    builtins.toJSON (builtins.fromJSON (builtins.readFile ./trust.json))
+  );
+  headroomJson = pkgs.writeText "pi-headroom.json" (
+    builtins.toJSON (builtins.fromJSON (builtins.readFile ./headroom/settings.json))
+  );
   authJson = pkgs.writeText "pi-auth.json" (
     # Security Note: This puts the placeholder in the world-readable /nix/store.
     # Use agenix/sops-nix for real keys, or add them manually after deployment.
@@ -35,6 +41,7 @@ in
   home.activation.piSeedConfigs = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     # Keep a legacy symlink for any hardcoded extensions expecting ~/.pi
     run mkdir $VERBOSE_ARG -p "$HOME/.config/pi"
+    run mkdir $VERBOSE_ARG -p "$HOME/.config/pi/headroom"
     run ln $VERBOSE_ARG -sfn "$HOME/.config/pi" "$HOME/.pi"
 
     if [ ! -e "$HOME/.config/pi/settings.json" ]; then
@@ -56,6 +63,16 @@ in
     if [ ! -e "$HOME/.config/pi/auth.json" ]; then
       run cp $VERBOSE_ARG ${authJson} "$HOME/.config/pi/auth.json"
       run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/auth.json"
+    fi
+
+    if [ ! -e "$HOME/.config/pi/trust.json" ]; then
+      run cp $VERBOSE_ARG ${trustJson} "$HOME/.config/pi/trust.json"
+      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/trust.json"
+    fi
+
+    if [ ! -e "$HOME/.config/pi/headroom/settings.json" ]; then
+      run cp $VERBOSE_ARG ${headroomJson} "$HOME/.config/pi/headroom/settings.json"
+      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/headroom/settings.json"
     fi
   '';
 
