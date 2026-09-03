@@ -25,9 +25,8 @@
     };
     initExtra = ''
       export VK_DRIVER_FILES=/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json
-      export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
-      export ANDROID_HOME=$HOME/Android/Sdk
-      export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
+      export ANDROID_HOME=/opt/android-sdk
+      export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
     '';
   };
 }
