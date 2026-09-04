@@ -14,6 +14,7 @@
     ../../modules/containers.nix
     ../../modules/keychron-q1.nix
     ../../modules/openvpn.nix
+    ../../modules/stm32-dfu.nix
   ];
 
   system.stateVersion = "26.05";
