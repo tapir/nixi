@@ -41,7 +41,6 @@ in
   home.activation.piSeedConfigs = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     # Keep a legacy symlink for any hardcoded extensions expecting ~/.pi
     run mkdir $VERBOSE_ARG -p "$HOME/.config/pi"
-    run mkdir $VERBOSE_ARG -p "$HOME/.config/pi/headroom"
     run ln $VERBOSE_ARG -sfn "$HOME/.config/pi" "$HOME/.pi"
 
     if [ ! -e "$HOME/.config/pi/settings.json" ]; then
@@ -70,9 +69,9 @@ in
       run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/trust.json"
     fi
 
-    if [ ! -e "$HOME/.config/pi/headroom/settings.json" ]; then
-      run cp $VERBOSE_ARG ${headroomJson} "$HOME/.config/pi/headroom/settings.json"
-      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/headroom/settings.json"
+    if [ ! -e "$HOME/.config/pi/pi-codegraph-enhanced.json" ]; then
+      run cp $VERBOSE_ARG ${headroomJson} "$HOME/.config/pi/pi-codegraph-enhanced.json"
+      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/pi-codegraph-enhanced.json"
     fi
   '';
 

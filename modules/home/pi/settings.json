@@ -1,41 +1,17 @@
 {
   "defaultModel": "z-ai/glm-5.3",
   "defaultProvider": "openrouter",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "max",
   "packages": [
     "npm:pi-web-access",
     "npm:pi-subagents",
-    "npm:pi-lens",
     "npm:@estebanforge/pi-codegraph-enhanced",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-rtk-optimizer",
     "npm:context-mode",
-    "npm:@raquezha/noheadroom"
+    "npm:pi-long-task",
+    "npm:@bacnh85/pi-ponytail"
   ],
   "quietStartup": true,
-  "subagents": {
-    "agentOverrides": {
-      "oracle": {
-        "model": "qwen/qwen3.8-max",
-        "thinking": "max"
-      },
-      "researcher": {
-        "model": "qwen/qwen3.8-max",
-        "thinking": "medium"
-      },
-      "reviewer": {
-        "model": "qwen/qwen3.8-max",
-        "thinking": "high"
-      },
-      "scout": {
-        "model": "qwen/qwen3.8-max",
-        "thinking": "low"
-      },
-      "worker": {
-        "model": "moonshotai/kimi-k3",
-        "thinking": "high"
-      }
-    }
-  },
   "theme": "dark"
 }

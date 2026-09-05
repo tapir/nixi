@@ -1,8 +1,0 @@
-{
-    "enabled": true,
-    "baseUrl": "http://127.0.0.1:8788",
-    "autoStart": true,
-    "mode": "normal",
-    "minContextTokens": 10000,
-    "minMessageChars": 2000
-}
