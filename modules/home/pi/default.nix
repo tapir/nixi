@@ -27,8 +27,8 @@ let
   trustJson = pkgs.writeText "pi-trust.json" (
     builtins.toJSON (builtins.fromJSON (builtins.readFile ./trust.json))
   );
-  headroomJson = pkgs.writeText "pi-headroom.json" (
-    builtins.toJSON (builtins.fromJSON (builtins.readFile ./headroom/settings.json))
+  codegraphJson = pkgs.writeText "pi-codegraph-enhanced.json" (
+    builtins.toJSON (builtins.fromJSON (builtins.readFile ./pi-codegraph-enhanced.json))
   );
   authJson = pkgs.writeText "pi-auth.json" (
     # Security Note: This puts the placeholder in the world-readable /nix/store.
@@ -70,7 +70,7 @@ in
     fi
 
     if [ ! -e "$HOME/.config/pi/pi-codegraph-enhanced.json" ]; then
-      run cp $VERBOSE_ARG ${headroomJson} "$HOME/.config/pi/pi-codegraph-enhanced.json"
+      run cp $VERBOSE_ARG ${codegraphJson} "$HOME/.config/pi/pi-codegraph-enhanced.json"
       run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/pi-codegraph-enhanced.json"
     fi
   '';
