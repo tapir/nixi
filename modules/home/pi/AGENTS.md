@@ -11,3 +11,4 @@
 - Always use "timeout" for executions to eliminate calls getting stuck.
 - When doing a git commit do not include a prefix on the description (no "frontend:" or "chore:"), just make it a plain english phrase.
 - Always explain the git commit in the body.
+- Always make sure all warnings and errors fixed finishing a task.
