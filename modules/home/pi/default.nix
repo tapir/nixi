@@ -85,6 +85,7 @@ in
   # Also setting sessionVariables is highly recommended so it applies
   # globally to non-bash sessions (like Wayland/X11 environments)
   home.sessionVariables = {
+    PONYTAIL_DEFAULT_MODE = "ultra";
     PI_CODING_AGENT_DIR = "$HOME/.config/pi";
   };
 }
