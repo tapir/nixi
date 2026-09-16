@@ -3,15 +3,15 @@
 ## Environment
 
 - The environment you see is an Arch Linux docker container where the $HOME directory is mounted to the host's $HOME directory.
-- You can ask user to install packages inside the container.
+- You can ask user to install packages inside the container. `yay` is installed which is an AUR-aware, `pacman` compatible cli too.
 - The host is NixOS and its configuration is in ~/Documents/nixi.
 
 ## General Rules
 
 - Always use "timeout" for executions to eliminate calls getting stuck.
-- When doing a git commit do not include a prefix on the description (no "frontend:" or "chore:"), just make it a plain english phrase.
+- When doing a git commit do not include a prefix on the description (no "frontend:" or "chore:"), just make it a plain english phrase. Start with uppercase letter.
 - Always explain the git commit in the body.
-- Always make sure all warnings and errors fixed when finishing a task.
+- Always make sure all warnings and errors are solved before finalizing a task.
 
 ## Code Commenting Rules
 
