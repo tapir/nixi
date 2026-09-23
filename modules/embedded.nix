@@ -18,6 +18,7 @@
     groups.plugdev = { };
     users.cosku.extraGroups = [
       "plugdev"
+      "dialout"
     ];
   };
 }
