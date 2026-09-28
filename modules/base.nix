@@ -125,6 +125,7 @@
   # Global flatpaks
   services.flatpak = {
     enable = true;
+    update.onActivation = true;
 
     packages = [
       "io.github.kolunmi.Bazaar"
