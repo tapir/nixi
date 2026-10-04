@@ -148,6 +148,17 @@
     ];
 
     overrides.global = {
+      # Flatpak force-sets GTK_IM_MODULE=ibus in every sandbox (it detects
+      # ibus-portal on the session bus, so unsetting it on the host does
+      # nothing). The ibus gtk4 IM module in GNOME Platform 51 / fdsdk 26.08
+      # recurses into itself on set_client_widget -> stack overflow -> every
+      # GTK4 app dies instantly with SIGSEGV. Upstream bug, fixed in neither
+      # the runtime nor host ibus yet.
+      # "wayland" restores what GTK4 picks natively on a GNOME Wayland session
+      # (zwp_text_input_v3 via mutter), so input methods keep working.
+      # Drop this once the runtime ships a libim-ibus.so that doesn't recurse.
+      Environment.GTK_IM_MODULE = "wayland";
+
       Context.filesystems = [
         "xdg-config/gtk-3.0:ro"
         "xdg-config/gtk-4.0:ro"
