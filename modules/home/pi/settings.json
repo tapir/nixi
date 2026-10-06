@@ -10,7 +10,8 @@
     "npm:pi-rtk-optimizer",
     "npm:context-mode",
     "npm:pi-long-task",
-    "npm:@bacnh85/pi-ponytail"
+    "npm:@bacnh85/pi-ponytail",
+    "npm:pi-chrome"
   ],
   "quietStartup": true,
   "theme": "dark"
