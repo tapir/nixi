@@ -15,6 +15,9 @@
     ../../modules/epomaker-th80v2.nix
   ];
 
+  # only the MediaTek USB dongle should be a radio, the M.2 Intel card stays dark
+  boot.blacklistedKernelModules = [ "iwlwifi" ];
+
   system.stateVersion = "26.05";
   home-manager.users.cosku = import ./home.nix;
   networking.hostName = "nixcosh-minipc";
