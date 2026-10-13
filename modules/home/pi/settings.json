@@ -9,7 +9,7 @@
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-rtk-optimizer",
     "npm:pi-long-task",
-    "npm:@bacnh85/pi-ponytail",
+    "npm:@dietrichgebert/ponytail",
     "npm:pi-chrome",
     "npm:pi-grilling-skill"
   ],
