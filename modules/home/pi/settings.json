@@ -1,5 +1,5 @@
 {
-  "defaultModel": "z-ai/glm-5.3",
+  "defaultModel": "qwen/qwen3.8-max-0902",
   "defaultProvider": "openrouter",
   "defaultThinkingLevel": "max",
   "packages": [
@@ -8,10 +8,10 @@
     "npm:@estebanforge/pi-codegraph-enhanced",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-rtk-optimizer",
-    "npm:context-mode",
     "npm:pi-long-task",
     "npm:@bacnh85/pi-ponytail",
-    "npm:pi-chrome"
+    "npm:pi-chrome",
+    "npm:pi-grilling-skill"
   ],
   "quietStartup": true,
   "theme": "dark"
