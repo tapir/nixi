@@ -30,9 +30,10 @@ let
   codegraphJson = pkgs.writeText "pi-codegraph-enhanced.json" (
     builtins.toJSON (builtins.fromJSON (builtins.readFile ./pi-codegraph-enhanced.json))
   );
+  cavemanJson = pkgs.writeText "caveman.json" (
+    builtins.toJSON (builtins.fromJSON (builtins.readFile ./caveman.json))
+  );
   authJson = pkgs.writeText "pi-auth.json" (
-    # Security Note: This puts the placeholder in the world-readable /nix/store.
-    # Use agenix/sops-nix for real keys, or add them manually after deployment.
     builtins.toJSON (builtins.fromJSON (builtins.readFile ./auth.json))
   );
 in
@@ -72,6 +73,11 @@ in
     if [ ! -e "$HOME/.config/pi/pi-codegraph-enhanced.json" ]; then
       run cp $VERBOSE_ARG ${codegraphJson} "$HOME/.config/pi/pi-codegraph-enhanced.json"
       run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/pi-codegraph-enhanced.json"
+    fi
+
+    if [ ! -e "$HOME/.config/pi/caveman.json" ]; then
+      run cp $VERBOSE_ARG ${cavemanJson} "$HOME/.config/pi/caveman.json"
+      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/caveman.json"
     fi
   '';
 

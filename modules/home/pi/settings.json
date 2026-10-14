@@ -11,7 +11,9 @@
     "npm:pi-long-task",
     "npm:@dietrichgebert/ponytail",
     "npm:pi-chrome",
-    "npm:pi-grilling-skill"
+    "npm:pi-grilling-skill",
+    "npm:pi-caveman",
+    "npm:pi-btw"
   ],
   "quietStartup": true,
   "theme": "dark"
