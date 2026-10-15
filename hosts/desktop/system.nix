@@ -14,7 +14,7 @@
     ../../modules/containers.nix
     ../../modules/keychron-q1.nix
     ../../modules/openvpn.nix
-    #../../modules/sunshine.nix
+    ../../modules/fiio.nix
     ../../modules/stm32-dfu.nix
   ];
 

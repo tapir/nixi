@@ -13,6 +13,7 @@
     ../../modules/kmscon.nix
     ../../modules/containers.nix
     ../../modules/epomaker-th80v2.nix
+    ../../modules/fiio.nix
   ];
 
   # only the MediaTek USB dongle should be a radio, the M.2 Intel card stays dark
