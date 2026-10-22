@@ -1,7 +1,7 @@
 {
   "defaultModel": "qwen/qwen3.8-max-0902",
   "defaultProvider": "openrouter",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-web-access",
     "npm:pi-agents",
