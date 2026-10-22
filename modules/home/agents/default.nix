@@ -10,6 +10,9 @@
 {
   home.file = {
     ".agents/coder-c.md".source = ./coder-c.md;
+    ".agents/coder-go.md".source = ./coder-go.md;
+    ".agents/coder-rust.md".source = ./coder-rust.md;
+    ".agents/coder-python.md".source = ./coder-python.md;
     ".agents/scout.md".source = ./scout.md;
   };
 }
