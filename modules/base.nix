@@ -170,13 +170,13 @@
       ];
     };
 
-    # PrusaSlicer's flatpak is X11-only (its metadata only requests
-    # --socket=x11, and its wxGTK build forces GDK_BACKEND=x11). Under the
-    # global GTK_IM_MODULE=wayland above, GTK then loads im-wayland.so in an
-    # XWayland-only sandbox: gdk_wayland_display_get_wl_display() returns
-    # NULL and the app SIGSEGVs in libwayland-client right after startup.
-    # GTK's built-in simple IM context keeps it usable (Latin typing).
+    # X11-only wxGTK flatpaks (metadata requests only --socket=x11, so wx
+    # forces GDK_BACKEND=x11) die the same way as the ibus module above: the
+    # global GTK_IM_MODULE=wayland makes GTK load im-wayland.so with no
+    # Wayland display, and it SIGSEGVs in libwayland-client right after
+    # startup. The built-in simple IM context keeps them usable (Latin typing).
     overrides."com.prusa3d.PrusaSlicer".Environment.GTK_IM_MODULE = "gtk-im-context-simple";
+    overrides."org.kicad.KiCad".Environment.GTK_IM_MODULE = "gtk-im-context-simple";
   };
 
   # Enable the Nautilus extension for terminal access
