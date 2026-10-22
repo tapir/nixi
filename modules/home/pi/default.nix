@@ -6,9 +6,12 @@
 # on activation when they don't exist yet (fresh machine / fresh home).
 #
 # The payloads live as plain files next to this module (settings.json,
-# web-search.json, AGENTS.md) so they can be edited directly
-# instead of as inline nix strings. builtins.fromJSON validates them at
-# eval time: a typo fails `nixswitch`, never activation.
+# web-search.json, ...) so they can be edited directly instead of as inline
+# nix strings. builtins.fromJSON validates them at eval time: a typo fails
+# `nixswitch`, never activation.
+#
+# AGENTS.md is the exception: pi never rewrites it, so it is a read-only
+# store symlink and this module is its only source of truth.
 #
 # auth.json is deliberately not seeded: it holds API keys. A fresh machine
 # authenticates through pi itself.
@@ -38,6 +41,16 @@ let
   );
 in
 {
+  home.file.".config/pi/AGENTS.md".source = ./AGENTS.md;
+
+  # One-shot: drop the file the old seeding left behind, home-manager refuses
+  # to clobber a real file with a symlink.
+  home.activation.piUnseedAgentsMd = config.lib.dag.entryBefore [ "writeBoundary" ] ''
+    if [ -e "$HOME/.config/pi/AGENTS.md" ] && [ ! -L "$HOME/.config/pi/AGENTS.md" ]; then
+      run rm $VERBOSE_ARG -f "$HOME/.config/pi/AGENTS.md"
+    fi
+  '';
+
   # Seed pi config files only when absent; live files belong to pi/the user.
   home.activation.piSeedConfigs = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     # Keep a legacy symlink for any hardcoded extensions expecting ~/.pi
@@ -57,11 +70,6 @@ in
     if [ ! -e "$HOME/.config/pi/web-search.json" ]; then
       run cp $VERBOSE_ARG ${webSearchJson} "$HOME/.config/pi/web-search.json"
       run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/web-search.json"
-    fi
-
-    if [ ! -e "$HOME/.config/pi/AGENTS.md" ]; then
-      run cp $VERBOSE_ARG ${./AGENTS.md} "$HOME/.config/pi/AGENTS.md"
-      run chmod $VERBOSE_ARG 644 "$HOME/.config/pi/AGENTS.md"
     fi
 
     if [ ! -e "$HOME/.config/pi/trust.json" ]; then
