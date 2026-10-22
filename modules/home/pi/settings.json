@@ -1,18 +1,17 @@
 {
   "defaultModel": "qwen/qwen3.8-max-0902",
   "defaultProvider": "openrouter",
-  "defaultThinkingLevel": "max",
+  "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-web-access",
-    "npm:pi-subagents",
+    "npm:pi-agents",
     "npm:@estebanforge/pi-codegraph-enhanced",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-rtk-optimizer",
     "npm:@dietrichgebert/ponytail",
     "npm:pi-chrome",
     "npm:pi-grilling-skill",
-    "npm:pi-caveman",
-    "npm:pi-btw"
+    "npm:pi-caveman"
   ],
   "quietStartup": true,
   "theme": "dark"
