@@ -14,6 +14,7 @@
 - Always make sure all warnings and errors are solved before finalizing a task.
 - Always use the defined agents whenever possible. For example: coder, scout etc...
 - If you need a "durable" session -a session that would survive crashes- you can also spawn your own agents to do arbitrary tasks.
+However, you're *not* allowed to choose just any LLM model. The custom agent you spwan should always inherit your own model. You can specify the thinking/reasoning effort as you wish.
 
 ## Markdown Documenting Rules
 
