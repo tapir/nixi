@@ -17,6 +17,7 @@
     ../../modules/home/distrobox.nix
     ../../modules/home/bash.nix
     ../../modules/home/pi
+    ../../modules/home/agents
   ];
 
   programs.bash = {

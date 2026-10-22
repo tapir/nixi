@@ -6,9 +6,12 @@
 # on activation when they don't exist yet (fresh machine / fresh home).
 #
 # The payloads live as plain files next to this module (settings.json,
-# web-search.json, auth.json, AGENTS.md) so they can be edited directly
+# web-search.json, AGENTS.md) so they can be edited directly
 # instead of as inline nix strings. builtins.fromJSON validates them at
 # eval time: a typo fails `nixswitch`, never activation.
+#
+# auth.json is deliberately not seeded: it holds API keys. A fresh machine
+# authenticates through pi itself.
 #
 # To reset any file to the nix-managed version: delete the live file and
 # re-run home-manager switch, e.g.:
@@ -33,9 +36,6 @@ let
   cavemanJson = pkgs.writeText "caveman.json" (
     builtins.toJSON (builtins.fromJSON (builtins.readFile ./caveman.json))
   );
-  authJson = pkgs.writeText "pi-auth.json" (
-    builtins.toJSON (builtins.fromJSON (builtins.readFile ./auth.json))
-  );
 in
 {
   # Seed pi config files only when absent; live files belong to pi/the user.
@@ -43,6 +43,10 @@ in
     # Keep a legacy symlink for any hardcoded extensions expecting ~/.pi
     run mkdir $VERBOSE_ARG -p "$HOME/.config/pi"
     run ln $VERBOSE_ARG -sfn "$HOME/.config/pi" "$HOME/.pi"
+
+    # pi-subagents scans both ~/.agents and $PI_CODING_AGENT_DIR/agents; one
+    # target keeps the profiles from modules/home/agents the only copy.
+    run ln $VERBOSE_ARG -sfn "$HOME/.agents" "$HOME/.config/pi/agents"
 
     if [ ! -e "$HOME/.config/pi/settings.json" ]; then
       run cp $VERBOSE_ARG ${settingsJson} "$HOME/.config/pi/settings.json"
@@ -58,11 +62,6 @@ in
     if [ ! -e "$HOME/.config/pi/AGENTS.md" ]; then
       run cp $VERBOSE_ARG ${./AGENTS.md} "$HOME/.config/pi/AGENTS.md"
       run chmod $VERBOSE_ARG 644 "$HOME/.config/pi/AGENTS.md"
-    fi
-
-    if [ ! -e "$HOME/.config/pi/auth.json" ]; then
-      run cp $VERBOSE_ARG ${authJson} "$HOME/.config/pi/auth.json"
-      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/auth.json"
     fi
 
     if [ ! -e "$HOME/.config/pi/trust.json" ]; then
