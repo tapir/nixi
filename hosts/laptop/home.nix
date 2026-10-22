@@ -16,12 +16,13 @@
     ../../modules/home/bash.nix
     ../../modules/home/pi
     ../../modules/home/agents
+    ../../modules/home/agent-skills.nix
   ];
 
   programs.bash = {
     shellAliases = {
-      nixboot = "cd $HOME/Documents/nixi && sudo nixos-rebuild boot --flake .#laptop && cd -";
-      nixswitch = "cd $HOME/Documents/nixi && sudo nixos-rebuild switch --flake .#laptop && cd -";
+      nixboot = "cd $HOME/Documents/nixi && sudo nixos-rebuild boot --flake .#laptop --impure && cd -";
+      nixswitch = "cd $HOME/Documents/nixi && sudo nixos-rebuild switch --flake .#laptop --impure && cd -";
       devreset = "docker pull ghcr.io/tapir/my-arch-dev:latest && yes | distrobox rm arch-dev && distrobox create --no-entry --name arch-dev --image ghcr.io/tapir/my-arch-dev:latest --volume /run/opengl-driver:/run/opengl-driver --volume /run/opengl-driver-32:/run/opengl-driver-32";
     };
     initExtra = ''
