@@ -13,6 +13,7 @@
 - When doing a git commit do not include a prefix on the description (no "frontend:" or "chore:"), just make it a plain english phrase. Start with uppercase letter. Always explain the git commit in the body.
 - Always make sure all warnings and errors are solved before finalizing a task.
 - Always use the defined agents whenever possible. For example: coder, scout etc...
+- If you need a "durable" session -a session that would survive crashes- you can also spawn your own agents to do arbitrary tasks.
 
 ## Markdown Documenting Rules
 
