@@ -16,6 +16,7 @@
     ../../modules/openvpn.nix
     ../../modules/fiio.nix
     ../../modules/stm32-dfu.nix
+    ../../modules/remote-desktop.nix
   ];
 
   system.stateVersion = "26.05";

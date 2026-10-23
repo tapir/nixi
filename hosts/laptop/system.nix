@@ -14,6 +14,7 @@
     ../../modules/openvpn.nix
     ../../modules/zbook-g1a.nix
     ../../modules/fiio.nix
+    ../../modules/remote-desktop.nix
   ];
 
   system.stateVersion = "26.05";
