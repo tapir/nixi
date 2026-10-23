@@ -1,7 +1,7 @@
 {
-  "defaultModel": "qwen/qwen3.8-max-0902",
+  "defaultModel": "~z-ai/glm-latest",
   "defaultProvider": "openrouter",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "max",
   "compaction": {
     "modelOverrides": {
       "openrouter/qwen/qwen3.8-max-0902": {
@@ -9,6 +9,10 @@
         "keepRecentTokens": 40000
       },
       "openrouter/z-ai/glm-5.3": {
+        "reserveTokens": 750000,
+        "keepRecentTokens": 20000
+      },
+      "openrouter/~z-ai/glm-latest": {
         "reserveTokens": 750000,
         "keepRecentTokens": 20000
       },
