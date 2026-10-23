@@ -2,6 +2,34 @@
   "defaultModel": "qwen/qwen3.8-max-0902",
   "defaultProvider": "openrouter",
   "defaultThinkingLevel": "medium",
+  "compaction": {
+    "modelOverrides": {
+      "openrouter/qwen/qwen3.8-max-0902": {
+        "reserveTokens": 500000,
+        "keepRecentTokens": 40000
+      },
+      "openrouter/z-ai/glm-5.3": {
+        "reserveTokens": 750000,
+        "keepRecentTokens": 40000
+      },
+      "openrouter/z-ai/glm-5.3-flash": {
+        "reserveTokens": 800000,
+        "keepRecentTokens": 40000
+      },
+      "openrouter/~z-ai/glm-flash-latest": {
+        "reserveTokens": 800000,
+        "keepRecentTokens": 40000
+      },
+      "openrouter/deepseek/deepseek-v4.1-flash-1017": {
+        "reserveTokens": 400000,
+        "keepRecentTokens": 40000
+      },
+      "openrouter/~deepseek/deepseek-flash-latest": {
+        "reserveTokens": 400000,
+        "keepRecentTokens": 40000
+      }
+    }
+  },
   "packages": [
     "npm:pi-web-access",
     "npm:pi-agents",
