@@ -2,7 +2,6 @@
 
 let
   stateDir = "/var/lib/gnome-remote-desktop";
-  grdctl = "${pkgs.gnome-remote-desktop}/bin/grdctl";
 in
 {
   # GNOME Remote Desktop, system/headless mode: RDP on :3389, shows the GDM
@@ -15,15 +14,25 @@ in
   security.tpm2.enable = true;
   users.users.gnome-remote-desktop.extraGroups = [ "tss" ];
 
-  # The NixOS module only runs the daemon; all system-mode configuration is
-  # mutable state with no NixOS options, so apply it idempotently at boot.
-  # The RDP password is the exception (secret): set it once per machine with
+  # `grdctl --system rdp enable` cannot work on NixOS: it runs `systemctl
+  # enable` first, which fails against the read-only /etc/systemd/system and
+  # aborts before setting the flag. The daemon reads this key file directly
+  # (and file-monitors it), so declare it instead. The RDP password is the
+  # exception (secret, TPM-sealed): set it once per machine with
   #   sudo grdctl --system rdp set-credentials <user> <password>
-  # It persists TPM-sealed across rebuilds and reboots.
+  environment.etc."gnome-remote-desktop/grd.conf".text = ''
+    [RDP]
+    enabled=true
+    tls-key=${stateDir}/tls.key
+    tls-cert=${stateDir}/tls.crt
+  '';
+
+  # The self-signed TLS cert is mutable per-machine state; generate it once.
   systemd.services.gnome-remote-desktop-setup = {
     wantedBy = [ "multi-user.target" ];
-    after = [ "dbus.service" ];
-    requires = [ "dbus.service" ];
+    # The daemon's StateDirectory creates ${stateDir}; the daemon starts
+    # without a cert, waits, and is restarted here once the cert exists.
+    after = [ "gnome-remote-desktop.service" ];
     serviceConfig.Type = "oneshot";
     script = ''
       set -eu
@@ -34,16 +43,8 @@ in
         chown root:gnome-remote-desktop ${stateDir}/tls.key ${stateDir}/tls.crt
         chmod 640 ${stateDir}/tls.key ${stateDir}/tls.crt
       fi
-      ${grdctl} --system rdp set-tls-key ${stateDir}/tls.key
-      ${grdctl} --system rdp set-tls-cert ${stateDir}/tls.crt
-      ${grdctl} --system rdp enable
-      ${grdctl} --system rdp disable-view-only
       ${config.systemd.package}/bin/systemctl try-restart gnome-remote-desktop.service
     '';
-    # grdctl --system spawns its configuration helper via pkexec
-    environment = {
-      PATH = lib.mkForce "${pkgs.polkit}/bin:${pkgs.coreutils}/bin";
-      DBUS_SYSTEM_BUS_ADDRESS = "unix:path=/run/dbus/system_bus_socket";
-    };
+    environment.PATH = lib.mkForce "${pkgs.coreutils}/bin";
   };
 }
