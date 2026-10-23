@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   stateDir = "/var/lib/gnome-remote-desktop";
@@ -40,6 +40,10 @@ in
       ${grdctl} --system rdp disable-view-only
       ${config.systemd.package}/bin/systemctl try-restart gnome-remote-desktop.service
     '';
-    environment.DBUS_SYSTEM_BUS_ADDRESS = "unix:path=/run/dbus/system_bus_socket";
+    # grdctl --system spawns its configuration helper via pkexec
+    environment = {
+      PATH = lib.mkForce "${pkgs.polkit}/bin:${pkgs.coreutils}/bin";
+      DBUS_SYSTEM_BUS_ADDRESS = "unix:path=/run/dbus/system_bus_socket";
+    };
   };
 }
