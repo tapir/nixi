@@ -1,9 +1,13 @@
 # pi coding agent — global configuration seeds
 #
 # IMPORTANT: pi mutates its own config files at runtime (`pi install`,
-# /settings, model switching, curator provider changes...), so these files
-# are NOT managed as read-only nix symlinks. Instead this module SEEDS them
-# on activation when they don't exist yet (fresh machine / fresh home).
+# /settings, model switching, trust decisions...), so read-only store
+# symlinks would fail those writes — an unwritable trust.json even crashes
+# pi. Instead the files live as regular writable files and activation
+# re-copies them from the store whenever the payload in this module changed
+# (a stamp symlink under ~/.config/pi/.nix-seed records the last seeded
+# store path). Edit the JSON files next to this module to change config;
+# pi's runtime edits to the live files survive until the next payload change.
 #
 # The payloads live as plain files next to this module (settings.json,
 # web-search.json, ...) so they can be edited directly instead of as inline
@@ -14,10 +18,12 @@
 # store symlink and this module is its only source of truth.
 #
 # auth.json is deliberately not seeded: it holds API keys. A fresh machine
-# authenticates through pi itself.
+# authenticates through pi itself. web-search.json holds machine-local API
+# keys too (the repo payload carries placeholders), so it is seed-only and
+# never force-updated.
 #
-# To reset any file to the nix-managed version: delete the live file and
-# re-run home-manager switch, e.g.:
+# To force a file back to the nix version: delete the live file (or its
+# stamp) and re-run home-manager switch, e.g.:
 #   rm ~/.config/pi/settings.json && nixswitch
 
 { config, pkgs, ... }:
@@ -61,30 +67,30 @@ in
     # target keeps the profiles from modules/home/agents the only copy.
     run ln $VERBOSE_ARG -sfn "$HOME/.agents" "$HOME/.config/pi/agents"
 
-    if [ ! -e "$HOME/.config/pi/settings.json" ]; then
-      run cp $VERBOSE_ARG ${settingsJson} "$HOME/.config/pi/settings.json"
-      # Make it writable by the user so Pi can mutate it
-      run chmod $VERBOSE_ARG 644 "$HOME/.config/pi/settings.json"
-    fi
+    # Re-copy a config from the store when it is missing or the payload
+    # changed since the last seed; the stamp symlink records the store path.
+    piSeedConfig() {
+      local src="$1" target="$2" mode="$3"
+      local stamp="$HOME/.config/pi/.nix-seed/$(basename "$target")"
+      if [ -e "$target" ] && [ "$(readlink "$stamp" 2>/dev/null)" = "$src" ]; then
+        return 0
+      fi
+      run mkdir $VERBOSE_ARG -p "$(dirname "$stamp")"
+      run cp $VERBOSE_ARG -f "$src" "$target"
+      run chmod $VERBOSE_ARG "$mode" "$target"
+      run ln $VERBOSE_ARG -sfn "$src" "$stamp"
+    }
 
+    piSeedConfig ${settingsJson} "$HOME/.config/pi/settings.json" 644
+    piSeedConfig ${trustJson} "$HOME/.config/pi/trust.json" 600
+    piSeedConfig ${codegraphJson} "$HOME/.config/pi/pi-codegraph-enhanced.json" 600
+    piSeedConfig ${cavemanJson} "$HOME/.config/pi/caveman.json" 600
+
+    # Seed-only: the live file carries real API keys, the repo payload only
+    # placeholders — clobbering would break web search.
     if [ ! -e "$HOME/.config/pi/web-search.json" ]; then
       run cp $VERBOSE_ARG ${webSearchJson} "$HOME/.config/pi/web-search.json"
       run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/web-search.json"
-    fi
-
-    if [ ! -e "$HOME/.config/pi/trust.json" ]; then
-      run cp $VERBOSE_ARG ${trustJson} "$HOME/.config/pi/trust.json"
-      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/trust.json"
-    fi
-
-    if [ ! -e "$HOME/.config/pi/pi-codegraph-enhanced.json" ]; then
-      run cp $VERBOSE_ARG ${codegraphJson} "$HOME/.config/pi/pi-codegraph-enhanced.json"
-      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/pi-codegraph-enhanced.json"
-    fi
-
-    if [ ! -e "$HOME/.config/pi/caveman.json" ]; then
-      run cp $VERBOSE_ARG ${cavemanJson} "$HOME/.config/pi/caveman.json"
-      run chmod $VERBOSE_ARG 600 "$HOME/.config/pi/caveman.json"
     fi
   '';
 
