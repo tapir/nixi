@@ -10,15 +10,15 @@
       },
       "openrouter/z-ai/glm-5.3": {
         "reserveTokens": 750000,
-        "keepRecentTokens": 40000
+        "keepRecentTokens": 20000
       },
       "openrouter/z-ai/glm-5.3-flash": {
         "reserveTokens": 800000,
-        "keepRecentTokens": 40000
+        "keepRecentTokens": 20000
       },
       "openrouter/~z-ai/glm-flash-latest": {
         "reserveTokens": 800000,
-        "keepRecentTokens": 40000
+        "keepRecentTokens": 20000
       },
       "openrouter/deepseek/deepseek-v4.1-flash-1017": {
         "reserveTokens": 400000,
