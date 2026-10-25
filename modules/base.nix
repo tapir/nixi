@@ -175,6 +175,7 @@
     # global GTK_IM_MODULE=wayland makes GTK load im-wayland.so with no
     # Wayland display, and it SIGSEGVs in libwayland-client right after
     # startup. The built-in simple IM context keeps them usable (Latin typing).
+    overrides."org.onlyoffice.desktopeditors".Environment.GTK_IM_MODULE = "gtk-im-context-simple";
     overrides."com.prusa3d.PrusaSlicer".Environment.GTK_IM_MODULE = "gtk-im-context-simple";
     overrides."org.kicad.KiCad".Environment.GTK_IM_MODULE = "gtk-im-context-simple";
   };

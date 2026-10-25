@@ -1,5 +1,5 @@
 {
-  "defaultModel": "~z-ai/glm-latest",
+  "defaultModel": "~deepseek/deepseek-flash-latest",
   "defaultProvider": "openrouter",
   "defaultThinkingLevel": "max",
   "compaction": {
@@ -42,7 +42,6 @@
     "npm:pi-rtk-optimizer",
     "npm:@dietrichgebert/ponytail",
     "npm:pi-chrome",
-    "npm:pi-grilling-skill",
     "npm:pi-caveman"
   ],
   "quietStartup": true,
