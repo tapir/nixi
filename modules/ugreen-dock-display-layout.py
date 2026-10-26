@@ -25,9 +25,11 @@ BUS_NAME = "org.gnome.Mutter.DisplayConfig"
 OBJ_PATH = "/org/gnome/Mutter/DisplayConfig"
 IFACE = "org.gnome.Mutter.DisplayConfig"
 METHOD_VERIFY = 0          # check the config without switching to it
-METHOD_PERSISTENT = 2      # switch and store it in monitors.xml
+# Temporary, not persistent: mutter answers a persistent apply with the
+# "keep changes?" dialog and reverts the config when nobody confirms it.
+METHOD_TEMPORARY = 1
 SETTLE_MS = 1200           # topology keeps moving for a moment after a hotplug
-MIN_APPLY_INTERVAL = 3.0   # guards against re-applying in a signal loop
+MIN_APPLY_INTERVAL = 5.0   # the dock can re-enumerate faster than a modeset settles
 POLL_SECONDS = 30          # backstop for signals missed while mutter restarts
 
 
@@ -178,7 +180,7 @@ def main():
     if not positional:
         sys.exit(__doc__)
     spec = json.load(open(positional[0]))["monitors"]
-    method = METHOD_VERIFY if "--verify" in flags else METHOD_PERSISTENT
+    method = METHOD_VERIFY if "--verify" in flags else METHOD_TEMPORARY
     dry_run = "--dry-run" in flags
 
     bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
@@ -212,6 +214,12 @@ def main():
             return False
         if dry_run:
             log("dry run, not applying")
+            return False
+
+        remaining = MIN_APPLY_INTERVAL - (time.monotonic() - state["last_apply"])
+        if remaining > 0:
+            log("topology still settling, retrying in %.0fs" % remaining)
+            GLib.timeout_add_seconds(int(remaining) + 1, reconcile)
             return False
 
         log("verifying" if method == METHOD_VERIFY else "applying layout")
