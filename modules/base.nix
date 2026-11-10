@@ -1,5 +1,27 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
+let
+  # Patch the derivation, not the 1.144.0 binary layout, because nixpkgs 26.05
+  # still expects the pre-1.122 ripgrep path and an `asar extract` that keeps
+  # the executable bit on unpacked files. Drop once 26.05 carries the upstream
+  # fix (nixpkgs#584492, nixpkgs#584184).
+  vscode = pkgs.vscode.overrideAttrs (old: {
+    postPatch =
+      lib.replaceStrings
+        [
+          ''asar extract "$packed" "$unpacked"''
+          "@vscode/ripgrep/bin/rg"
+        ]
+        [
+          ''
+            asar extract "$packed" "$unpacked"
+            cp -a --remove-destination "$packed.unpacked/." "$unpacked/"
+          ''
+          "@vscode/ripgrep-universal/bin/linux-x64/rg"
+        ]
+        old.postPatch;
+  });
+in
 {
   # Enable flakes
   nix.settings.experimental-features = [

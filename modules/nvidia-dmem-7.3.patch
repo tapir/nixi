@@ -1,0 +1,17 @@
+NVIDIA 610.57.04 open kernel modules: adapt the dmem cgroup registration to
+the kernel 7.3 API, which replaced (size, name_fmt, ...) with a
+struct dmem_cgroup_init. Leaving ops NULL keeps the pre-7.3 behaviour: the
+driver only accounts memory, it never gets a reclaim callback.
+
+--- a/kernel/nvidia/os-interface.c
++++ b/kernel/nvidia/os-interface.c
+@@ -2817,7 +2817,8 @@
+ 
+ void* NV_API_CALL os_dmem_cgroup_register_region(NvU64 size, const char *name)
+ {
+-    void *region = dmem_cgroup_register_region(size, name);
++    struct dmem_cgroup_init init = { .size = size };
++    void *region = dmem_cgroup_register_region(&init, "%s", name);
+     if (IS_ERR(region))
+     {
+         return NULL;

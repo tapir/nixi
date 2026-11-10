@@ -19,6 +19,8 @@
         openSha256 = "sha256-rQHOOOY4KL92Ww3KDwh+j4eGU7oNAH8LutZC5wmFnPo=";
         settingsSha256 = "sha256-ZEMo8I8Zc2Tq6RVDNYpAH+f094dUaZiBqO+5f6lIjRI=";
         persistencedSha256 = "sha256-aXmD2VY1RLlgAnlHhOUMWzvMyhI6JTClcFLm4imF/mA=";
+        # Kernel 7.3 changed the dmem cgroup registration API; drop with the pin.
+        patches = [ ./nvidia-dmem-7.3.patch ];
       };
       open = true;
       modesetting.enable = true;
