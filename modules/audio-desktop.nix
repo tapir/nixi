@@ -80,15 +80,17 @@ in
         actions.update-props = {
           # pro-audio would expose the raw playback PCM again
           "api.acp.disable-pro-audio" = "true";
+          # capture only, and analog only: no output ports, no S/PDIF input
           "api.acp.hidden-ports" = ''
-            [ "analog-output-speaker", "iec958-stereo-output" ]
+            [ "analog-output-speaker", "iec958-stereo-output", "iec958-stereo-input" ]
           '';
           "api.acp.hidden-profiles" = ''
             [ "output:analog-stereo", "output:iec958-stereo"
             , "output:analog-stereo+input:analog-stereo"
             , "output:analog-stereo+input:iec958-stereo"
             , "output:iec958-stereo+input:analog-stereo"
-            , "output:iec958-stereo+input:iec958-stereo" ]
+            , "output:iec958-stereo+input:iec958-stereo"
+            , "input:iec958-stereo" ]
           '';
         };
       }
