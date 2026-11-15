@@ -15,6 +15,7 @@
     ../../modules/keychron-q1.nix
     ../../modules/openvpn.nix
     ../../modules/fiio.nix
+    ../../modules/audio-desktop.nix
     ../../modules/stm32-dfu.nix
     ../../modules/remote-desktop.nix
   ];
