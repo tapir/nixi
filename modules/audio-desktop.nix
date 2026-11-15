@@ -40,15 +40,57 @@ in
     "wireplumber.settings"."device.restore-profile" = false;
 
     # ALC1220: analog output only — the fifine USB mic is the sole source.
-    # fifine: capture only, its headphone output stays out of the menu.
     "device.profile.priority.rules" = [
       {
         matches = [ { "device.name" = "alsa_card.pci-0000_0c_00.6"; } ];
         actions.update-props.priorities = [ "output:analog-stereo" ];
       }
+    ];
+
+    # ACP drops whatever is listed here from the Pulse API: hidden profiles
+    # cannot be selected at all, and the UI devices GNOME derives from card
+    # ports are never created. This is the only way to remove a direction —
+    # snd-usb-audio builds both PCMs from the descriptors, so unbinding the
+    # playback interface leaves the output in place.
+    "monitor.alsa.rules" = [
+      {
+        matches = [ { "device.name" = "alsa_card.pci-0000_0c_00.6"; } ];
+        actions.update-props = {
+          # pro-audio would expose the raw capture PCM again
+          "api.acp.disable-pro-audio" = "true";
+          "api.acp.hidden-ports" = ''
+            [ "analog-input-front-mic", "analog-input-rear-mic", "analog-input-linein" ]
+          '';
+          "api.acp.hidden-profiles" = ''
+            [ "input:analog-stereo", "input:iec958-stereo"
+            , "output:analog-stereo+input:analog-stereo"
+            , "output:analog-stereo+input:iec958-stereo"
+            , "output:iec958-stereo+input:analog-stereo"
+            , "output:iec958-stereo+input:iec958-stereo"
+            , "output:analog-surround-21+input:analog-stereo"
+            , "output:analog-surround-41+input:analog-stereo"
+            , "output:analog-surround-51+input:analog-stereo"
+            , "output:analog-surround-40+input:analog-stereo"
+            , "output:analog-surround-50+input:analog-stereo" ]
+          '';
+        };
+      }
       {
         matches = [ { "device.name" = "alsa_card.usb-3142_fifine_Microphone-00"; } ];
-        actions.update-props.priorities = [ "input:analog-stereo" ];
+        actions.update-props = {
+          # pro-audio would expose the raw playback PCM again
+          "api.acp.disable-pro-audio" = "true";
+          "api.acp.hidden-ports" = ''
+            [ "analog-output-speaker", "iec958-stereo-output" ]
+          '';
+          "api.acp.hidden-profiles" = ''
+            [ "output:analog-stereo", "output:iec958-stereo"
+            , "output:analog-stereo+input:analog-stereo"
+            , "output:analog-stereo+input:iec958-stereo"
+            , "output:iec958-stereo+input:analog-stereo"
+            , "output:iec958-stereo+input:iec958-stereo" ]
+          '';
+        };
       }
     ];
   };
