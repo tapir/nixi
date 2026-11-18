@@ -17,7 +17,8 @@
     ../../modules/fiio.nix
     ../../modules/audio-desktop.nix
     ../../modules/stm32-dfu.nix
-    ../../modules/remote-desktop.nix
+    ../../modules/remote-desktop.nixi
+    ../../modules/epomaker-th80v2.nix
   ];
 
   system.stateVersion = "26.05";
