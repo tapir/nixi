@@ -17,7 +17,7 @@
     ../../modules/fiio.nix
     ../../modules/audio-desktop.nix
     ../../modules/stm32-dfu.nix
-    ../../modules/remote-desktop.nixi
+    ../../modules/remote-desktop.nix
     ../../modules/epomaker-th80v2.nix
   ];
 
