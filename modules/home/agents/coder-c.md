@@ -1,6 +1,6 @@
 ---
 name: coder-c
-description: "Writes, refactors, and fixes code across many files with the edit, write, and bash tools and every skill on demand. Self-contained jobs only: it has no MCP servers, no web search, no codegraph, no ask_user_question, so the job text must carry all context it needs."
+description: "Writes, refactors, and fixes C code across many files with the edit, write, and bash tools and every skill on demand. Self-contained jobs only: it has no MCP servers, no web search, no codegraph, no ask_user_question, so the job text must carry all context it needs."
 model: ~deepseek/deepseek-flash-latest
 thinking: max
 tools: read, bash, edit, write, grep, find, ls, codemode

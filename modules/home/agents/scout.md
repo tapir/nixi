@@ -2,7 +2,7 @@
 name: scout
 description: "Read-only legwork for another agent: find where a symbol, config, or behavior lives, map a module's dependencies, scan for callers, and summarize a subsystem. Reports paths and line numbers, never edits code."
 model: ~z-ai/glm-flash-latest
-thinking: low
+thinking: high
 tools: read, bash, grep, find, ls, codemode
 skills: []
 ---
