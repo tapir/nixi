@@ -16,6 +16,7 @@
 - If you need a "durable" session -a session that would survive crashes- you can also spawn your own agents to do arbitrary tasks. However, you're *not* allowed to choose just any LLM model. The custom agent you spwan should always inherit your own model or the models of the predefined agent profiles. You can specify the thinking/reasoning effort as you wish.
 - Do not start a custom agent when there is already an agent profile for it. For example, do not spawn a custom C/C++ coding agent when there is already a profile called "coder".
 - When user explicitly states he's asking a question, never try to assume intent and never start making changes right away. If it's a question, just answer. Running diagnostics to come up with a better answer is acceptable.
+- Never start developing on a git repo that is not up to date compared to its remote branch. Always get all the updates first and then start analysing and developing.
 
 ## Markdown Documenting Rules
 
