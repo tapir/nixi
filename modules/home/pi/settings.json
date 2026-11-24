@@ -10,7 +10,8 @@
     "npm:pi-rtk-optimizer",
     "npm:@dietrichgebert/ponytail",
     "npm:pi-chrome",
-    "npm:pi-caveman"
+    "npm:pi-caveman",
+    "npm:@llblab/pi-telegram"
   ],
   "quietStartup": true,
   "theme": "dark"
