@@ -1,39 +1,7 @@
 {
-  "defaultModel": "~deepseek/deepseek-flash-latest",
-  "defaultProvider": "openrouter",
+  "defaultModel": "claude-fable-5-2",
+  "defaultProvider": "anthropic",
   "defaultThinkingLevel": "max",
-  "compaction": {
-    "modelOverrides": {
-      "openrouter/qwen/qwen3.8-max-0902": {
-        "reserveTokens": 300000,
-        "keepRecentTokens": 40000
-      },
-      "openrouter/z-ai/glm-5.3": {
-        "reserveTokens": 550000,
-        "keepRecentTokens": 40000
-      },
-      "openrouter/~z-ai/glm-latest": {
-        "reserveTokens": 550000,
-        "keepRecentTokens": 40000
-      },
-      "openrouter/z-ai/glm-5.3-flash": {
-        "reserveTokens": 550000,
-        "keepRecentTokens": 40000
-      },
-      "openrouter/~z-ai/glm-flash-latest": {
-        "reserveTokens": 550000,
-        "keepRecentTokens": 40000
-      },
-      "openrouter/deepseek/deepseek-v4.1-flash-1017": {
-        "reserveTokens": 400000,
-        "keepRecentTokens": 40000
-      },
-      "openrouter/~deepseek/deepseek-flash-latest": {
-        "reserveTokens": 400000,
-        "keepRecentTokens": 40000
-      }
-    }
-  },
   "packages": [
     "npm:pi-web-access",
     "npm:pi-agents",
