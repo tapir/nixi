@@ -1,7 +1,7 @@
 ---
 name: coder-python
 description: "Writes, refactors, and fixes Python code across many files with the edit, write, and bash tools and every skill on demand. Self-contained jobs only: it has no MCP servers, no web search, no codegraph, no ask_user_question, so the job text must carry all context it needs."
-model: ~deepseek/deepseek-flash-latest
+model: synthetic/hf:deepseek-ai/DeepSeek-V4.1-Flash-1017
 thinking: max
 tools: read, bash, edit, write, grep, find, ls, codemode
 skills: ponytail, ponytail-review, modern-python
