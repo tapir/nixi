@@ -1,7 +1,15 @@
 {
-  "defaultModel": "claude-fable-5-2",
-  "defaultProvider": "anthropic",
+  "defaultModel": "hf:deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "defaultProvider": "synthetic",
   "defaultThinkingLevel": "max",
+  "compaction": {
+    "modelOverrides": {
+      "synthetic/hf:deepseek-ai/DeepSeek-V4.1-Flash-1017": {
+        "keepRecentTokens": 40000,
+        "reserveTokens": 400000
+      }
+    }
+  },
   "packages": [
     "npm:pi-web-access",
     "npm:pi-agents",
